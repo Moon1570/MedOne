@@ -53,7 +53,8 @@ public class PatientModel {
     @ManyToMany(mappedBy = "patients")
     private Set<DoctorModel> doctors = new HashSet<>();
 
-    
+    @OneToMany(mappedBy="patient")
+    private Set<ReportModel> reports;
 
 	public int getPatientId() {
 		return patientId;

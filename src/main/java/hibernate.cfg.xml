@@ -38,6 +38,9 @@
 
 		<mapping class="model.PatientModel" />
 		<mapping class="model.DoctorModel" />
+		<mapping class="model.ReportModel" />
+		
+		
 		
 	</session-factory>
 </hibernate-configuration>
