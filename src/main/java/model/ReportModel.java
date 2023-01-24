@@ -48,6 +48,13 @@ public class ReportModel {
     @ManyToOne
     @JoinColumn(name="patient_id", nullable=false)
     private PatientModel patient;
+    
+	@Column(name = "is_image")
+	private boolean image;
+	
+	@Column(name = "report_name")
+	private String reportName;
+
 
 
 	public int getReportId() {
@@ -57,6 +64,18 @@ public class ReportModel {
 
 	public void setReportId(int reportId) {
 		this.reportId = reportId;
+	}
+
+
+	
+	
+	public String getReportName() {
+		return reportName;
+	}
+
+
+	public void setReportName(String reportName) {
+		this.reportName = reportName;
 	}
 
 
@@ -98,6 +117,18 @@ public class ReportModel {
 	public void setPatient(PatientModel patient) {
 		this.patient = patient;
 	}
+
+
+	public boolean isImage() {
+		return image;
+	}
+
+
+	public void setImage(boolean image) {
+		this.image = image;
+	}
+	
+	
     
     
     

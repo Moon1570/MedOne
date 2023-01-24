@@ -23,11 +23,17 @@
 <body>
  Hello ${name} <br>
  Upload Report <br>
-                 <form class="mx-1 mx-md-4" action="./patients?action=reg" method="post" enctype="multipart/form-data">
+                 <form class="mx-1 mx-md-4" action="./report?action=reportUpload" method="post" enctype="multipart/form-data">
  
- 						<input class="input-field" type="file" name="patientImage"
-							required="required" id="file" onchange="return fileValidation()">
+ 						<input type="text" name="reportName" placeholder="enter report name"> <br>
+ 						<input class="input-field" type="file" name="reportImage" required="required" id="file" onchange="return fileValidation()">
+						<br>
+						<button type="submit" class="btn btn-primary btn-lg">Login</button>
+							
 				</form>
+				
+		<br>
+		<a href="./report?action=viewAll">View all reports</a>
  
  
  

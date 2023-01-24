@@ -17,7 +17,6 @@
     <servlet-name>PatientServlet</servlet-name>
     <url-pattern>/patients</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>DoctorServlet</display-name>
@@ -27,5 +26,15 @@
   <servlet-mapping>
     <servlet-name>DoctorServlet</servlet-name>
     <url-pattern>/doctors</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReportServlet</display-name>
+    <servlet-name>ReportServlet</servlet-name>
+    <servlet-class>controller.ReportServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportServlet</servlet-name>
+    <url-pattern>/report</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -16,6 +16,7 @@ import dao.Connection;
 import javassist.bytecode.Descriptor.Iterator;
 
 import model.PatientModel;
+import model.ReportModel;
 
 
 public class PatientDao {
@@ -173,5 +174,7 @@ public class PatientDao {
 		con.closeSessionFactory();
 		System.out.println("Deleted...");
 	}
+
+
 
 }
