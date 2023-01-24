@@ -3,12 +3,15 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.apache.commons.io.IOUtils;
 
@@ -73,6 +76,19 @@ public class PatientServlet extends HttpServlet {
 			session.removeAttribute("name");
 			
 			request.setAttribute("action", "login");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
+		} 
+else if (action.equals("getImage")) {
+		
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			PatientModel patientModel = db.getPatientById(pid);
+			
+			byte[] image = patientModel.getPatientImage();
+
+			OutputStream os = response.getOutputStream();
+			os.write(image);
+			os.flush();
+			os.close();
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} 
 	}
