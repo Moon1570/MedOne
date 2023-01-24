@@ -155,6 +155,14 @@ public class ReportServlet extends HttpServlet {
 			}
 			
 		}
+		else if(action.equals("viewReportFullScreen")) {
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			ReportModel reportModel = db.getReportByReportId(rid);
+		
+				request.setAttribute("report", reportModel);
+				request.getRequestDispatcher("/full_screen_report.jsp").forward(request, response);
+
+		}
 		
 	}
 
