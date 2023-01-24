@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +53,7 @@ public class DoctorModel {
     @Column(name="doctor_cert", nullable=false, columnDefinition="mediumblob")
     private byte[] doctorCert;
 	
-	@ManyToMany(targetEntity = PatientModel.class, cascade = { CascadeType.ALL })  
+	@ManyToMany(targetEntity = PatientModel.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)  
 	@JoinTable(name = "doctor_patient",   
 	            joinColumns = { @JoinColumn(name = "doctor_id") },   
 	            inverseJoinColumns = { @JoinColumn(name = "patient_id") })  

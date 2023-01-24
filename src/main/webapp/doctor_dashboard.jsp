@@ -27,13 +27,15 @@ Hello Doctor, ${dname}
 
 <form action="./doctors?action=getPatientReport" method="post">
 <input type="text" name="patientInfo" placeholder="phone">
-<button type="submit">Search</button>
+<button type="submit">Search report by phone</button>
 </form>
 
 <form action="./doctors?action=addPatient" method="post">
 <input type="text" name="patientInfo" placeholder="phone">
-<button type="submit">Search</button>
+<button type="submit">Add patient by phone</button>
 </form>
+
+<a href="./doctors?action=getAllPatients">View all patients</a>
 
 </body>
 </html>
