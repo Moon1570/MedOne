@@ -74,12 +74,33 @@ public class ReportServlet extends HttpServlet {
 			int rid = Integer.parseInt(request.getParameter("rid"));
 			ReportModel reportModel = db.getReportByReportId(rid);
 			if(reportModel.isImage()) {
+				byte[] image = reportModel.getReportFile();
+
+				/*
+								response.setContentType("application/pdf");
+
+								response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".pdf");
+								response.setStatus(HttpServletResponse.SC_OK);
+								OutputStream out = response.getOutputStream();
+								System.out.println(pdfData.length);
+								         
+								out.write(pdfData);
+								System.out.println("sendDone");
+								out.flush();
+								
+								*/
+								OutputStream os = response.getOutputStream();
+								os.write(image);
+								os.flush();
+								os.close();
+			}
+			else {
 				byte[] pdfData = reportModel.getReportFile();
 
+/*
+				response.setContentType("application/pdf");
 
-	            response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-
-				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".jpeg");
+				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".pdf");
 				response.setStatus(HttpServletResponse.SC_OK);
 				OutputStream out = response.getOutputStream();
 				System.out.println(pdfData.length);
@@ -87,10 +108,37 @@ public class ReportServlet extends HttpServlet {
 				out.write(pdfData);
 				System.out.println("sendDone");
 				out.flush();
+				
+				*/
+				OutputStream os = response.getOutputStream();
+				os.write(pdfData);
+				os.flush();
+				os.close();
+				
+			}
+			
+		}
+		else if(action.equals("downloadReport")) {
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			ReportModel reportModel = db.getReportByReportId(rid);
+			if(reportModel.isImage()) {
+				byte[] image = reportModel.getReportFile();
+
+								response.setContentType("application/pdf");
+
+								response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".jpeg");
+								response.setStatus(HttpServletResponse.SC_OK);
+								OutputStream out = response.getOutputStream();
+								System.out.println(image.length);
+								         
+								out.write(image);
+								System.out.println("sendDone");
+								out.flush();
+								
+
 			}
 			else {
 				byte[] pdfData = reportModel.getReportFile();
-
 
 				response.setContentType("application/pdf");
 
@@ -102,10 +150,11 @@ public class ReportServlet extends HttpServlet {
 				out.write(pdfData);
 				System.out.println("sendDone");
 				out.flush();
+				
+
 			}
 			
 		}
-		
 		
 	}
 

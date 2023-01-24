@@ -17,6 +17,7 @@
 		<th>Name</th>
 		<th>Upload Date</th>
 		<th>Type</th>
+		<th>View</th>
 		<th>Action</th>
 	</tr>
 	<c:forEach items="${reports}" var="report">
@@ -30,7 +31,14 @@
 		<c:if test="${!report.image}">                            
 			<td>PDF</td>
 		</c:if>
-		<td><a href="./report?action=viewReport&rid=${report.reportId}">View</a> Edit Delete</td>
+		<td> <a href="./report?action=viewReportFullScreen&rid=${report.reportId}">View Full Screen</a>
+		<iframe id="inlineFrameExample"
+		    title="Inline Frame Example"
+		    width="300"
+		    height="200"
+		    src="./report?action=viewReport&rid=${report.reportId}">
+		</iframe>
+		<td><a href="./report?action=downloadReport&rid=${report.reportId}">Download</a> Edit Delete</td>
 	</tr>
 	</c:forEach>
 </table>
