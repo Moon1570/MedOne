@@ -30,7 +30,7 @@
 		<c:if test="${!report.image}">                            
 			<td>PDF</td>
 		</c:if>
-		<td>View Edit Delete</td>
+		<td><a href="./report?action=viewReport&rid=${report.reportId}">View</a> Edit Delete</td>
 	</tr>
 	</c:forEach>
 </table>

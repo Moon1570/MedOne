@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import model.PatientModel;
 import model.ReportModel;
 
 public class ReportDao {
@@ -58,6 +59,22 @@ public class ReportDao {
 		con.closeSessionFactory();
 
 		return reportModels;
+	}
+
+	public ReportModel getReportByReportId(int rid) {
+		// TODO Auto-generated method stub
+		String query = "from ReportModel report where report.reportId=" + rid;
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		
+		
+		Query queryExecuteable = session.createQuery(query);
+		ReportModel reportModel = (ReportModel) queryExecuteable.list().get(0);
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		return reportModel;
 	}
 
 

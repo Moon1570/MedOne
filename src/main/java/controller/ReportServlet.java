@@ -13,6 +13,7 @@ import model.ReportModel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -68,6 +69,41 @@ public class ReportServlet extends HttpServlet {
 			request.setAttribute("reports", reportModels);
 			request.setAttribute("name", action);
 			request.getRequestDispatcher("/view_reports.jsp").forward(request, response);
+		}
+		else if(action.equals("viewReport")) {
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			ReportModel reportModel = db.getReportByReportId(rid);
+			if(reportModel.isImage()) {
+				byte[] pdfData = reportModel.getReportFile();
+
+
+	            response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+
+				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".jpeg");
+				response.setStatus(HttpServletResponse.SC_OK);
+				OutputStream out = response.getOutputStream();
+				System.out.println(pdfData.length);
+				         
+				out.write(pdfData);
+				System.out.println("sendDone");
+				out.flush();
+			}
+			else {
+				byte[] pdfData = reportModel.getReportFile();
+
+
+				response.setContentType("application/pdf");
+
+				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".pdf");
+				response.setStatus(HttpServletResponse.SC_OK);
+				OutputStream out = response.getOutputStream();
+				System.out.println(pdfData.length);
+				         
+				out.write(pdfData);
+				System.out.println("sendDone");
+				out.flush();
+			}
+			
 		}
 		
 		
