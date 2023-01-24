@@ -46,4 +46,44 @@ public class DoctorDao {
 		return customerModel;
 	}
 
+	public PatientModel getPatientByPhone(String phone) {
+		// TODO Auto-generated method stub
+		String query = "from PatientModel patient where patient.patientPhone='"+phone+"'";
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		//Query queryExecuteable = session.createQuery(query);
+		Query queryExecuteable = session.createQuery(query);
+		PatientModel patient = null;
+		try {
+			patient = (PatientModel) queryExecuteable.list().get(0);
+		} catch (Exception e) {
+		System.out.println("Problem with login... + " + patient + " got it?");
+		}
+
+		//SignupModel signupModel = (SignupModel) queryExecuteable.list().get(0);
+		System.out.println(patient);
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		return patient;
+	}
+
+	public DoctorModel getDoctorById(int did) {
+		// TODO Auto-generated method stub
+		String query = "from DoctorModel doctor where doctor.doctorId=" + did;
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		
+		
+		Query queryExecuteable = session.createQuery(query);
+		DoctorModel doctor = (DoctorModel) queryExecuteable.list().get(0);
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		return doctor;
+		
+	}
+
 }

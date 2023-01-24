@@ -1,3 +1,4 @@
+<%@page import="com.mchange.v2.sql.filter.SynchronizedFilterDataSource"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,6 +11,10 @@
 </head>
 
 <%
+		response.setHeader("Cache-Control","no-cache");
+		response.setHeader("Cache-Control","no-store");
+		response.setHeader("Pragma","no-cache");
+		response.setDateHeader ("Expires", 0);
 		session = request.getSession();
 		if (session.getAttribute("pid") == "false" || session.getAttribute("pid") == null) {
 			//	request.getRequestDispatcher("admin-login.jsp");
@@ -35,7 +40,7 @@
 		<br>
 		<a href="./report?action=viewAll">View all reports</a>
  
- 
+ <a href="./patients?action=logout">Logout</a>
  
  <script>
         function fileValidation() {

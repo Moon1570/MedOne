@@ -10,18 +10,22 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import model.DoctorModel;
 import model.PatientModel;
+import model.ReportModel;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 
 import dao.DoctorDao;
 import dao.PatientDao;
+import dao.ReportDao;
 
 /**
  * Servlet implementation class DoctorServlet
@@ -40,6 +44,7 @@ public class DoctorServlet extends HttpServlet {
     }
 
 	DoctorDao db = new DoctorDao();
+	ReportDao rdb = new ReportDao();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -57,7 +62,6 @@ public class DoctorServlet extends HttpServlet {
 
 
 		
-		System.out.println(session.getAttribute("cid"));
 		if (action.equals("reg")) {
 			
 			
@@ -68,6 +72,7 @@ public class DoctorServlet extends HttpServlet {
 		
 			request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 		}
+		
 	}
 
 	/**
@@ -188,6 +193,36 @@ else if (action.equals("login")) {
 				request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 			}
 		} 
+		
+		else if (action.equals("getPatientReport")) {
+			
+			String phone = request.getParameter("patientInfo");
+			PatientModel patientModel = db.getPatientByPhone(phone);
+			
+			List<ReportModel> reportModels = rdb.getAllReportByPatientId(patientModel.getPatientId());
+			request.setAttribute("reports", reportModels);
+			
+			request.getRequestDispatcher("/view_reports.jsp").forward(request, response);
+		}
+		else if (action.equals("addPatient")) {
+			
+			String phone = request.getParameter("patientInfo");
+			PatientModel patientModel = db.getPatientByPhone(phone);
+			
+			HttpSession session = request.getSession();
+			
+			int did = (int) session.getAttribute("did");
+			DoctorModel doctorModel = db.getDoctorById(did);
+			
+			Set<PatientModel> patients = doctorModel.getPatients();
+			patients.add(patientModel);
+			
+			db.updateDoctor(doctorModel);
+			
+
+			
+			request.getRequestDispatcher("/doctor_dashboard.jsp").forward(request, response);
+		}
 		
 	}
 

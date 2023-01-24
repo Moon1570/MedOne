@@ -67,7 +67,6 @@ public class ReportServlet extends HttpServlet {
 			List<ReportModel> reportModels = db.getAllReportByPatientId(pid);
 			System.out.println(reportModels.get(0).getReportName());
 			request.setAttribute("reports", reportModels);
-			request.setAttribute("name", action);
 			request.getRequestDispatcher("/view_reports.jsp").forward(request, response);
 		}
 		else if(action.equals("viewReport")) {
