@@ -26,7 +26,14 @@
 
 
 <body>
- Hello ${name} <br>
+ Hello ${name}, ${msg } , name = ${singleReport.reportName }  <br>
+ <iframe id="inlineFrameExample"
+		    title="Inline Frame Example"
+		    width="300"
+		    height="200"
+		    src="./report?action=viewReport&rid=${singleReport.reportId}">
+		</iframe>
+ 
  Upload Report <br>
                  <form class="mx-1 mx-md-4" action="./report?action=reportUpload" method="post" enctype="multipart/form-data">
  

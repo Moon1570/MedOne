@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 import org.apache.commons.io.IOUtils;
 
 import dao.PatientDao;
+import dao.ReportDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -25,6 +26,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import model.DoctorModel;
 import model.PatientModel;
+import model.ReportModel;
 
 
 @MultipartConfig
@@ -32,6 +34,7 @@ public class PatientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	PatientDao db = new PatientDao();
+	ReportDao rdb = new ReportDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -191,29 +194,17 @@ else if (action.equals("getImage")) {
 				session.setAttribute("name", patientModel.getPatientName());
 				session.setAttribute("pid", pid);
 				
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-			//	System.out.println("line 195 " + request.getParameter("url") + " pid " + request.getParameter("pid"));
-				/*
-				if (request.getParameter("url").isEmpty()) {
-					
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
-					
-				//	request.getRequestDispatcher(url).forward(request, response);
-				}
-				else {
-					int pid = Integer.parseInt(request.getParameter("pid"));
-					String url = request.getParameter("url");
-					String page = request.getParameter("page");
-					url = request.getContextPath () + "/orders?action="+page+"&pid="+pid;
-					
-					
-					System.out.println("line 226 " +url);
-					
-					response.sendRedirect(url);
+				ReportModel reportModel = rdb.getLastReportByPatientId(pid);
+				
+				if(reportModel == null) {
+					request.setAttribute("msg", "No reports uploaded yet");
+				} else {
+					request.setAttribute("msg", "You have uploaded at least one report");
+					request.setAttribute("singleReport", reportModel);
 				}
 				
-				*/
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 			}
 			
 			else {

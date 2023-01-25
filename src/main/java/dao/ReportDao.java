@@ -77,6 +77,28 @@ public class ReportDao {
 		return reportModel;
 	}
 
+	public ReportModel getLastReportByPatientId(int pid) {
+		// TODO Auto-generated method stub
+		String query = "from ReportModel as report where report.patient.patientId=" + pid +"ORDER BY report.reportCreateDate" ;
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		Query queryExecuteable = session.createQuery(query);
+		List<ReportModel> reportModels=new ArrayList<>();
+		reportModels = queryExecuteable.list();
+
+
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+
+		if (reportModels.isEmpty()) {
+			return null;
+		} else {
+			return reportModels.get(0);
+		}
+	}
+
 
 
 }
