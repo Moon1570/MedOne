@@ -49,7 +49,6 @@ public class PatientServlet extends HttpServlet {
 
 
 		
-		System.out.println(session.getAttribute("cid"));
 		if (action.equals("view")) {
 			List<PatientModel> customerModels = db.getAllPatients();
 			request.setAttribute("customers", customerModels);
