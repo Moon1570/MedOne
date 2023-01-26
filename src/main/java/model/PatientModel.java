@@ -1,7 +1,9 @@
 package model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -57,7 +59,7 @@ public class PatientModel {
     private Set<ReportModel> reports;
     
 	@Column(name = "patient_relatives")
-    private HashSet<PatientModel> relatives;
+    private HashMap<Integer, String> relatives = new HashMap<Integer, String>();
     
     
 
@@ -125,6 +127,23 @@ public class PatientModel {
 		this.doctors = doctors;
 	}
 
+	public Set<ReportModel> getReports() {
+		return reports;
+	}
+
+	public void setReports(Set<ReportModel> reports) {
+		this.reports = reports;
+	}
+
+	public HashMap<Integer, String> getRelatives() {
+		return relatives;
+	}
+
+	public void setRelatives(HashMap<Integer, String> relatives) {
+		this.relatives = relatives;
+	}
+
+	
 	
 	
 	

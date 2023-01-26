@@ -180,6 +180,21 @@ public class PatientDao {
 		System.out.println("Deleted...");
 	}
 
+	public void updatePatient(PatientModel patientModel) {
+		// TODO Auto-generated method stub
+		Connection con = new Connection();
+
+		Session session = con.getSessionFactory().openSession();
+
+		Transaction transaction = session.beginTransaction();
+		session.update(patientModel);
+		transaction.commit();
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		System.out.println("Updated...");
+	}
+
 
 
 }

@@ -7,8 +7,10 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
@@ -92,7 +94,6 @@ else if (action.equals("getImage")) {
 			os.write(image);
 			os.flush();
 			os.close();
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} 
 	}
 
@@ -217,21 +218,48 @@ else if (action.equals("getImage")) {
 			String relativePhone= request.getParameter("relativePhoneNumber");
 			HttpSession session=request.getSession();
 
-			PatientModel patientModel = db.getPatientByphone(relativePhone);
+			PatientModel relativeModel = db.getPatientByphone(relativePhone);
 			int pid = (int) session.getAttribute("pid");
 
+			PatientModel patientModel = db.getPatientById(pid);
 			
-			if(patientModel == null) {
+			
+			if(relativeModel == null) {
 				request.setAttribute("relStatus", "0");
-			} else if(patientModel.getPatientId() == pid){
+			} else if(relativeModel.getPatientId() == pid){
 				request.setAttribute("relStatus", "2");
-			}
+			} 
 			else {
-				request.setAttribute("relStatus", "1");
-				request.setAttribute("relative", patientModel);
+				Map<Integer, String> relativeMap = patientModel.getRelatives();
+				if (relativeMap.isEmpty()) {
+					request.setAttribute("relStatus", "1");
+					request.setAttribute("relative", relativeModel);
+				} else if(relativeMap.containsKey(relativeModel.getPatientId())){
+					request.setAttribute("relStatus", "3");
+					request.setAttribute("relative", relativeModel);
+				} else {
+					request.setAttribute("relStatus", "1");
+					request.setAttribute("relative", relativeModel);
+				}
 			}
-			
+			System.out.println(patientModel.getRelatives().toString());
 			request.getRequestDispatcher("/view_relative.jsp").forward(request, response);
+		} else if(action.equalsIgnoreCase("addRelationship")) {
+			HttpSession session = request.getSession();
+			int pid = (int) session.getAttribute("pid");
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			String relationName = request.getParameter("relationName");
+			
+			PatientModel patientModel = db.getPatientById(pid);
+			Map<Integer, String> relativeMap = patientModel.getRelatives();
+			
+			relativeMap.put(rid, relationName);
+			patientModel.setRelatives((HashMap<Integer, String>) relativeMap);
+			db.updatePatient(patientModel);
+			request.setAttribute("rmsg", "relative added");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			
+			
 		}
 	}
 
