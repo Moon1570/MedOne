@@ -37,4 +37,14 @@
     <servlet-name>ReportServlet</servlet-name>
     <url-pattern>/report</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DrugServlet</display-name>
+    <servlet-name>DrugServlet</servlet-name>
+    <servlet-class>controller.DrugServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DrugServlet</servlet-name>
+    <url-pattern>/DrugServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

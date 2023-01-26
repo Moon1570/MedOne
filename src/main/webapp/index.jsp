@@ -56,7 +56,8 @@
 							
 				</form>
 	
- 
+  <a href="drugs.jsp">Drugs</a>
+ <br>
  <a href="./patients?action=logout">Logout</a>
  
  <script>
