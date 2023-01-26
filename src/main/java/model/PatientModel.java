@@ -55,6 +55,11 @@ public class PatientModel {
 
     @OneToMany(mappedBy="patient")
     private Set<ReportModel> reports;
+    
+	@Column(name = "patient_relatives")
+    private HashSet<PatientModel> relatives;
+    
+    
 
 	public int getPatientId() {
 		return patientId;

@@ -11,10 +11,10 @@
 </head>
 
 <%
-		response.setHeader("Cache-Control","no-cache");
-		response.setHeader("Cache-Control","no-store");
-		response.setHeader("Pragma","no-cache");
-		response.setDateHeader ("Expires", 0);
+	//	response.setHeader("Cache-Control","no-cache");
+	//	response.setHeader("Cache-Control","no-store");
+	//	response.setHeader("Pragma","no-cache");
+	//	response.setDateHeader ("Expires", 0);
 		session = request.getSession();
 		if (session.getAttribute("pid") == "false" || session.getAttribute("pid") == null) {
 			//	request.getRequestDispatcher("admin-login.jsp");
@@ -46,6 +46,14 @@
 				
 		<br>
 		<a href="./report?action=viewAll">View all reports</a>
+		
+		 <form class="mx-1 mx-md-4" action="./patients?action=addRelativesByPhone" method="post">
+ 
+ 							<input type="text" name="relativePhoneNumber" placeholder="enter relative phone"> <br>
+						<button type="submit" class="btn btn-primary btn-lg">Add relatives</button>
+							
+				</form>
+	
  
  <a href="./patients?action=logout">Logout</a>
  

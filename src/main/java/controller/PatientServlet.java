@@ -213,6 +213,26 @@ else if (action.equals("getImage")) {
 				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		} 
+		else if (action.equalsIgnoreCase("addRelativesByPhone")) {
+			String relativePhone= request.getParameter("relativePhoneNumber");
+			HttpSession session=request.getSession();
+
+			PatientModel patientModel = db.getPatientByphone(relativePhone);
+			int pid = (int) session.getAttribute("pid");
+
+			
+			if(patientModel == null) {
+				request.setAttribute("relStatus", "0");
+			} else if(patientModel.getPatientId() == pid){
+				request.setAttribute("relStatus", "2");
+			}
+			else {
+				request.setAttribute("relStatus", "1");
+				request.setAttribute("relative", patientModel);
+			}
+			
+			request.getRequestDispatcher("/view_relative.jsp").forward(request, response);
+		}
 	}
 
 }

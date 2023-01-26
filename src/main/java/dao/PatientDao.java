@@ -147,16 +147,21 @@ public class PatientDao {
 
 	public PatientModel getPatientByphone(String phone) {
 		// TODO Auto-generated method stub
-		String query = "from CustomerModel order where order.customerPhone=" + phone;
+		String query = "from PatientModel patient where patient.patientPhone=" + phone;
 		Connection con = new Connection();
 		Session session = con.getSessionFactory().openSession();
 		
 		Query queryExecuteable = session.createQuery(query);
-		PatientModel customerModel = (PatientModel) queryExecuteable.list().get(0);
-		session.flush();
-		session.close();
-		con.closeSessionFactory();
-		return customerModel;
+		if(queryExecuteable.list().isEmpty()) {
+			return null;
+		} else {
+			PatientModel patient = (PatientModel) queryExecuteable.list().get(0);
+			session.flush();
+			session.close();
+			con.closeSessionFactory();
+			return patient;
+		}
+		
 	}
 
 
