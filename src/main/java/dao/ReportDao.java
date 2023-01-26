@@ -79,7 +79,7 @@ public class ReportDao {
 
 	public ReportModel getLastReportByPatientId(int pid) {
 		// TODO Auto-generated method stub
-		String query = "from ReportModel as report where report.patient.patientId=" + pid +"ORDER BY report.reportCreateDate" ;
+		String query = "from ReportModel as report where report.patient.patientId=" + pid +"ORDER BY report.reportCreateDate DESC" ;
 		Connection con = new Connection();
 		Session session = con.getSessionFactory().openSession();
 
