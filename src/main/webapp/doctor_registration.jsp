@@ -7,16 +7,27 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<meta charset="ISO-8859-1">
-<title>Doctor Registration</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript">
+$('.datepicker').datepicker({
+	  inline: true
+	});
+</script>
+<title>Registration</title>
 </head>
 <body>
 
 
-<section class="vh-100" style="background-color: #eee;">
+<section class="vh-100" style="background-color: #fff;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
+    <a class="navbar-brand row d-flex justify-content-center" href="#">
+            <img src="https://i.ibb.co/ykQgB00/medone-logo-1.png"
+                 height="200"
+                 width="350"
+                 alt="MDB Logo"
+                 loading="lazy" />
+        </a>
       <div class="col-lg-12 col-xl-11">
         <div class="card text-black" style="border-radius: 25px;">
           <div class="card-body p-md-5">
@@ -30,7 +41,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control"  name="doctorName"/>
+                      <input type="text" id="form3Example1c" class="form-control"  name="doctorName" required/>
                       <label class="form-label" for="form3Example1c">Your Name</label>
                     </div>
                   </div>
@@ -39,7 +50,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" name="doctorEmail"/>
+                      <input type="email" id="form3Example3c" class="form-control" name="doctorEmail" required/>
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -48,7 +59,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control"  name="doctorPhone"/>
+                      <input type="text" id="form3Example1c" class="form-control"  name="doctorPhone" required/>
                       <label class="form-label" for="form3Example1c">Your Phone</label>
                     </div>
                   </div>
@@ -64,26 +75,31 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" name="doctorPassword" />
+                      <input type="password" id="form3Example4c" class="form-control" name="doctorPassword"  required/>
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
 
                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <i class="fa-solid fa fa-address-card fa-lg pr-1" aria-hidden="true" ></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control"  name="doctorAddress"/>
+                      <input type="text" id="form3Example1c" class="form-control"  name="doctorAddress" required/>
                       <label class="form-label" for="form3Example1c">Your Address</label>
                     </div>
                   </div>
                   
-                  
-                  <input class="input-field" type="file" name="doctorImage" required="required">
-	
-				<input class="input-field" type="file" name="doctorCert"
-							required="required"> 	
-							
-					<input class="input-field" type="date" name="doctorDOB" required="required">
+                  <div class="d-flex flex-row align-items-center mb-4"> 
+                  <label for="formFileSm" class="form-label">Upload your photo:</label>
+                  <input class="form-control form-control-sm" id="formFileSm" type="file" name="doctorImage" required="required">
+				 </div>
+                <div class="d-flex flex-row align-items-center mb-4"> 
+                  <label for="formFileSm" class="form-label">Upload your certificate:</label>
+                  <input class="form-control form-control-sm" id="formFileSm" type="file" name="doctorCert" required="required">
+				 </div>
+				 <div class="md-form md-outline input-with-post-icon datepicker d-flex flex-row align-items-center mb-4">
+  					<label for="formDatesm" class="form-label">Date of Birth:</label>
+  					<input placeholder="Select date" type="date" id="example" class="form-control" name="doctorDOB" required="required">
+				</div>
 
 <!-- 
                   <div class="form-check d-flex justify-content-center mb-5">
