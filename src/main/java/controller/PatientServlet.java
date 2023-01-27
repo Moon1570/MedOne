@@ -279,9 +279,22 @@ public class PatientServlet extends HttpServlet {
 			request.setAttribute("docStatus", "1");
 			request.setAttribute("doctor", doctorModel);
 			
-
-			
 			request.getRequestDispatcher("/view_doctor.jsp").forward(request, response);
+			
+		} else if (action.equals("addDoctor")) {
+			int did = Integer.parseInt(request.getParameter("did"));
+			DoctorModel doctorModel = ddb.getDoctorById(did);
+			
+			HttpSession session = request.getSession();
+			int pid = (int) session.getAttribute("pid");
+			PatientModel patientModel = db.getPatientById(pid);
+			
+			Set<DoctorModel> doctorModels = patientModel.getDoctors();
+			doctorModels.add(doctorModel);
+			patientModel.setDoctors(doctorModels);
+			db.updatePatient(patientModel);
+			
+
 			
 		}
 	}

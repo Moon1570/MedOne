@@ -18,11 +18,14 @@ function closeWin() {
 	
 	Is it the right doctor?<br>
 	Name = ${doctor.doctorName}<br>
+	Address = ${doctor.doctorAddress}<br>
+
+	
 	<img src="./doctors?action=getImage&did=${doctor.doctorId}">	
 	
 	<form action="./patients?action=addDoctor" method="post" >
 		<input type="hidden" value="${doctor.doctorId }" name="did">
-		
+		<button type="submit">Add Doctor</button>
 
 	</form>
 </body>
