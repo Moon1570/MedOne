@@ -61,9 +61,10 @@ public class ReportServlet extends HttpServlet {
 
 
 		
-		int pid = (int) session.getAttribute("pid");
 		
 		if (action.equals("viewAll")) {
+			int pid = (int) session.getAttribute("pid");
+
 			List<ReportModel> reportModels = db.getAllReportByPatientId(pid);
 			System.out.println(reportModels.get(0).getReportName());
 			request.setAttribute("reports", reportModels);
