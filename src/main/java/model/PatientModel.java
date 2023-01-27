@@ -53,7 +53,7 @@ public class PatientModel {
     @Column(name="patient_image", nullable=false, columnDefinition="mediumblob")
     private byte[] patientImage;
 	
-    @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER,  cascade = { CascadeType.ALL })
     private Set<DoctorModel> doctors = new HashSet<>();
 
     @OneToMany(mappedBy="patient")
@@ -144,7 +144,15 @@ public class PatientModel {
 		this.relatives = relatives;
 	}
 
-	
+	public void addDoctor(DoctorModel doctorModel) {
+        this.doctors.add(doctorModel);
+        doctorModel.getPatients().add(this);
+    }
+  
+    public void removeDoctor(DoctorModel doctorModel) {
+        this.doctors.remove(doctorModel);
+        doctorModel.getPatients().remove(this);
+    }
 	
 	
 	
