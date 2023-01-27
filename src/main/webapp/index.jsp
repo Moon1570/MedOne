@@ -35,7 +35,7 @@
 
 
 
-<body>
+<body class="container">
  
  <main>
 <!-- <div class="jumbotron text-center" style="margin-bottom:0">
@@ -119,7 +119,7 @@
 		    title="Inline Frame Example"
 		    width="500"
 		    height="200"
-		    src="./report?action=viewReport&rid=${singleReport.reportId}">
+		    src="./report?action=viewSingleLastReport&rid=${singleReport.reportId}">
 		</iframe>
       
       <!--  

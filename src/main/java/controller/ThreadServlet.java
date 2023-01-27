@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import model.DoctorModel;
 import model.MessageModel;
 import model.PatientModel;
-
+import model.ReportModel;
 import model.ThreadModel;
 
 import java.io.IOException;
@@ -48,40 +48,65 @@ public class ThreadServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String action = request.getParameter("action");
-		
+
 		if (action.equals("myThreads")) {
-			
+
 			HttpSession session = request.getSession();
 
 			int pid = (int)session.getAttribute("pid");
 			request.setAttribute("pid", pid);
 			List<ThreadModel> threadModels = threadDao.getAllThreadByPatientId(pid);
-			
+
 			if (threadModels.isEmpty()) {
 				request.getRequestDispatcher("create_chat.jsp").forward(request, response);
 			} else {
 				request.setAttribute("threads", threadModels);
 				request.getRequestDispatcher("my_chats.jsp").forward(request, response);
 			}
-			
+
 		} else if(action.equals("startNewChat")) {
-			request.getRequestDispatcher("create_chat.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+
+			int pid = (int)session.getAttribute("pid");
+			request.setAttribute("pid", pid);
+			List<ThreadModel> threadModels = threadDao.getAllThreadByPatientId(pid);
+
+			if (threadModels.isEmpty()) {
+				request.getRequestDispatcher("create_chat.jsp").forward(request, response);
+			} else {
+				request.setAttribute("threads", threadModels);
+				request.getRequestDispatcher("create_chat.jsp").forward(request, response);
+			}
 		} else if(action.equals("openThread")) {
 			int threadId = Integer.parseInt(request.getParameter("threadId"));
 			ThreadModel thread = threadDao.getThreadByThreadId(threadId);
 			Set<MessageModel> messages = thread.getMessageList();
 			request.setAttribute("threadId", threadId);
-
-			request.setAttribute("ddid", thread.getDoctorModel().getDoctorId());
-			request.setAttribute("pid", thread.getPatientModel().getPatientId());
-
-			if (messages.isEmpty()) {
-				request.setAttribute("flag", 0);
-			} else {
-				request.setAttribute("flag", 1);
-				request.setAttribute("messages", messages);
+			
+			Set<ReportModel> reportModels = thread.getAttachedReport();
+			
+			if (!reportModels.isEmpty()) {
+				request.setAttribute("sharedReport", reportModels);
 			}
+			
+			request.setAttribute("threadId", threadId);
+
+
+			request.setAttribute("sender", thread.getPatientModel().getPatientName());
+			request.setAttribute("receiver", thread.getDoctorModel().getDoctorName());
+
+
+			if (messages.isEmpty())
+			{ 
+				request.setAttribute("flag", 0); 
+
+			} else 
+			{
+				request.setAttribute("flag", 1); 
+				request.setAttribute("messages", messages);
+			} 
 			request.getRequestDispatcher("chat_page.jsp").forward(request, response);
+
 		}
 
 	}
@@ -96,12 +121,12 @@ public class ThreadServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equals("addNewThread")) {
-			
+
 
 			int ddid = Integer.parseInt(request.getParameter("dropdownDoctor"));
 
 			System.out.println("doctor ID = "+ ddid);
-			
+
 			if(ddid == 0) {
 				request.setAttribute("msg", "please select a doctor.");
 				request.getRequestDispatcher("/create_chat.jsp").forward(request, response);
@@ -115,9 +140,9 @@ public class ThreadServlet extends HttpServlet {
 				DoctorModel doctorModel = doctorDao.getDoctorById(ddid);
 				threadModel.setDoctorModel(doctorModel);
 				threadModel.setPatientModel(patientModel);
-				
+
 				threadDao.saveThread(threadModel);
-				
+
 				response.sendRedirect(request.getContextPath() + "/threads?action=myThreads");
 				//request.getRequestDispatcher("my_chats.jsp").forward(request, response);
 
@@ -125,18 +150,18 @@ public class ThreadServlet extends HttpServlet {
 
 		} else if (action.equals("shareReport")) {
 			int threadId = Integer.parseInt(request.getParameter("threadId"));
-			
+
 			int reportId = Integer.parseInt(request.getParameter("dropdownReport"));
-			
+
 			ThreadModel threadModel = threadDao.getThreadByThreadId(threadId);
 			ReportModel reportModel = reportDao.getReportByReportId(reportId);
-			
+
 			Set<ReportModel> reportSet = threadModel.getAttachedReport();
 			reportSet.add(reportModel);
 			threadDao.updateThread(threadModel);
-			
+
 		}
-		
+
 	}
 
 }

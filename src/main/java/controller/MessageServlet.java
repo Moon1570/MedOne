@@ -63,28 +63,22 @@ public class MessageServlet extends HttpServlet {
 			MessageModel messageModel = new MessageModel();
 			Timestamp instant= Timestamp.from(Instant.now()); 
 
+			ThreadModel threadModel = threadDao.getThreadByThreadId(threadId);
 			messageModel.setMessages(message);
 			messageModel.setMessageDate(instant);
 
+			messageModel.setSender(threadModel.getPatientModel().getPatientName());
+			messageModel.setReceiver(threadModel.getDoctorModel().getDoctorName());
 
 			System.out.println(request.getParameter("ddid"));
-			if (request.getParameter("pid") != null && request.getParameter("ddid") != null) {
-				int pid = Integer.parseInt(request.getParameter("pid"));
-				int ddid = Integer.parseInt(request.getParameter("ddid"));
-				//	request.getRequestDispatcher("admin-login.jsp");
-				messageModel.setSender(patientDao.getPatientById(pid).getPatientName());
-				messageModel.setReceiver(doctorDao.getDoctorById(ddid).getDoctorName());
-			}
-			
-			
 			
 			
 
 			  messageDao.saveMessage(messageModel);
-			  System.out.println(messageModel.getMessageId()); ThreadModel threadModel =
-			  threadDao.getThreadByThreadId(threadId); Set<MessageModel> messages =
-			  threadModel.getMessageList(); messages.add(messageModel);
-			  threadModel.setMessageList(messages); threadDao.updateThread(threadModel);
+			  Set<MessageModel> messages = threadModel.getMessageList(); 
+			  messages.add(messageModel);
+			  threadModel.setMessageList(messages);
+			  threadDao.updateThread(threadModel);
 			  response.sendRedirect("./threads?action=openThread&threadId="+threadId);
 			 
 			 
