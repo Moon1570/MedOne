@@ -38,7 +38,7 @@ public class AdminServlet extends HttpServlet {
 
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-		//Log admin out
+		//Log admin outs
 		else if (action.equals("logout")) {
 
 
