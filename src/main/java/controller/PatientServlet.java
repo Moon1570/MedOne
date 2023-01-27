@@ -82,7 +82,7 @@ public class PatientServlet extends HttpServlet {
 			session.removeAttribute("name");
 
 			request.setAttribute("action", "login");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
 		} 
 		else if (action.equals("getImage")) {
 

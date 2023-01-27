@@ -62,53 +62,6 @@ main {
 <body>
 
 	<main>
-		<!-- <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>MedOne</h1>
-  <p>One Stop Medical Services</p> 
-</div> -->
-		<!-- 
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <a class="navbar-brand" href="#">
-    <img src="https://i.ibb.co/YQpHjHK/medone-logo-1.png" width="150" height="50" class="d-inline-block align-top" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <div class="dropdown">
-        	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    			Doctors'
-  			</button>
-  			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    			<a class="dropdown-item" href="#">Action</a>
-    			<a class="dropdown-item" href="#">Another action</a>
-    			<a class="dropdown-item" href="#">Something else here</a>
-  			</div>
-  		</div>
-      </li>
-      <li class="nav-item">
-         <div class="dropdown">
-        	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    			Patients'
-  			</button>
-  			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    			<a class="dropdown-item" href="#">Action</a>
-    			<a class="dropdown-item" href="#">Another action</a>
-    			<a class="dropdown-item" href="#">Something else here</a>
-  			</div>
-  		</div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About us</a>
-      </li>    
-    </ul>
-  </div>  
-</nav>
--->
-
-
 		<!-- ***** Header Area Start ***** -->
 		<header class="header-area header-sticky wow slideInDown"
 			data-wow-duration="0.75s" data-wow-delay="0s">
@@ -128,7 +81,8 @@ main {
 							<ul class="nav">
 								<li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
 								<li class="scroll-to-section"><a href="#services">Services</a></li>
-								<li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
+								<li class="scroll-to-section"><a href="#pricing">Features</a></li>
+								<li class="scroll-to-section"><a href="./patients?action=login">Login</a></li>
 								<li class="scroll-to-section"><a href="#about">About Us</a></li>
 								<li class="scroll-to-section"><a href="#contact">Contact
 										Us</a></li>
@@ -158,24 +112,24 @@ main {
 									<div class="row">
 										<div class="col-lg-4 col-sm-4">
 											<div class="info-stat">
-												<h6>Agency Status:</h6>
-												<h4>Ready Work</h4>
+												
+												<h4>24/7 Services</h4>
 											</div>
 										</div>
 										<div class="col-lg-4 col-sm-4">
 											<div class="info-stat">
-												<h6>Price:</h6>
-												<h4>$720/Month</h4>
+												
+												<h4>Only BDT 10/Month</h4>
 											</div>
 										</div>
 										<div class="col-lg-4 col-sm-4">
 											<div class="info-stat">
-												<h6>Schedules</h6>
-												<h4>$450/Meeting</h4>
+											
+												<h4>Save Time</h4>
 											</div>
 										</div>
 										<div class="col-lg-12">
-											<h2>SEO &amp; Digital Marketing Agency</h2>
+											<h2>Your One-Stop Medical Service</h2>
 										</div>
 										<div class="col-md-6">
 											<div class="row">
@@ -194,7 +148,7 @@ main {
 							<div class="col-lg-6">
 								<div class="right-image wow fadeInRight" data-wow-duration="1s"
 									data-wow-delay="0.5s">
-									<img src="assets/images/banner-right-image.png" alt="">
+									<img src="assets/images/3487267012.jpg" alt="">
 								</div>
 							</div>
 						</div>
@@ -216,7 +170,7 @@ main {
 											<h6>01</h6>
 										</div>
 										<div class="icon"></div>
-										<h4>Reach Out</h4>
+										<h4>Contact your doctors'</h4>
 										<div class="line-dec"></div>
 										<p>This HTML5 template is based on Bootstrap 5 CSS. You
 											are free to customize anything.</p>
@@ -229,7 +183,7 @@ main {
 											<h6>02</h6>
 										</div>
 										<div class="icon"></div>
-										<h4>Develop a Strategy</h4>
+										<h4>Share reports with your doctors</h4>
 										<div class="line-dec"></div>
 										<p>Lorem ipsum dolor sit ameter consectetur adipiscing li
 											elit sed do eiusmod.</p>
@@ -242,7 +196,7 @@ main {
 											<h6>03</h6>
 										</div>
 										<div class="icon"></div>
-										<h4>Implementation</h4>
+										<h4>Online Consultation</h4>
 										<div class="line-dec"></div>
 										<p>
 											If this template is useful for your website, please consider
@@ -259,7 +213,7 @@ main {
 											<h6>04</h6>
 										</div>
 										<div class="icon"></div>
-										<h4>Analyze the result</h4>
+										<h4>All in One Online Solution</h4>
 										<div class="line-dec"></div>
 										<p>Below circular progress bar animation supports those
 											CSS values 10, 20, 30, till 100.</p>
@@ -279,7 +233,7 @@ main {
 					<div class="col-lg-6">
 						<div class="left-image wow fadeInLeft" data-wow-duration="1s"
 							data-wow-delay="0.5s">
-							<img src="assets/images/about-left-image.png" alt="">
+							<img src="assets/images/team.png" alt="">
 						</div>
 					</div>
 					<div class="col-lg-6 align-self-center wow fadeInRight"
@@ -321,11 +275,11 @@ main {
 			</div>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<div class="service-item wow bounceInUp" data-wow-duration="1s"
 							data-wow-delay="0.3s">
 							<div class="row">
-								<div class="col-lg-4">
+								<div class="col-lg-3">
 									<div class="icon">
 										<img src="assets/images/service-icon-01.png" alt="">
 									</div>
@@ -340,11 +294,11 @@ main {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<div class="service-item wow bounceInUp" data-wow-duration="1s"
 							data-wow-delay="0.4s">
 							<div class="row">
-								<div class="col-lg-4">
+								<div class="col-lg-3">
 									<div class="icon">
 										<img src="assets/images/medical-history.png" alt="">
 									</div>
@@ -359,11 +313,11 @@ main {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<div class="service-item wow bounceInUp" data-wow-duration="1s"
 							data-wow-delay="0.5s">
 							<div class="row">
-								<div class="col-lg-4">
+								<div class="col-lg-3">
 									<div class="icon">
 										<img src="assets/images/relative-medical-history.jpg" alt="">
 									</div>
@@ -378,49 +332,12 @@ main {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4">
-						<div class="service-item wow bounceInUp" data-wow-duration="1s"
-							data-wow-delay="0.6s">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="icon">
-										<img src="assets/images/contact.jpeg" alt="">
-									</div>
-								</div>
-								<div class="col-lg-8">
-									<div class="right-content">
-										<h4>Contact your doctor</h4>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit
-											voluptatem accusantium dormque laudantium.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="service-item wow bounceInUp" data-wow-duration="1s"
-							data-wow-delay="0.7s">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="icon">
-										<img src="assets/images/share.png" alt="">
-									</div>
-								</div>
-								<div class="col-lg-8">
-									<div class="right-content">
-										<h4>Share report with your doctor</h4>
-										<p>Sed ut perspiciatis unde omnis iste natus error sit
-											voluptatem accusantium dormque laudantium.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
+					
+					<div class="col-lg-3">
 						<div class="service-item wow bounceInUp" data-wow-duration="1s"
 							data-wow-delay="0.8s">
 							<div class="row">
-								<div class="col-lg-4">
+								<div class="col-lg-3">
 									<div class="icon">
 										<img src="assets/images/directory.png" alt="">
 									</div>
@@ -470,21 +387,19 @@ main {
 									</div>
 									<div class="col">
 										<div class="find-widget">
-											Company: <a href="https://hostriver.ro">HostRiver</a>
+											Company: <a href="https://hostriver.ro">Holy Bugs</a>
 										</div>
 										<div class="find-widget">
-											Address: <a href="#">4435 Berkshire Circle Knoxville</a>
+											Address: <a href="#">Barishal, Bangladesh.</a>
 										</div>
 										<div class="find-widget">
-											Phone: <a href="#">+ 879-890-9767</a>
+											Phone: <a href="#">+8801975341753</a>
 										</div>
 
 										<div class="find-widget">
-											Website: <a href="https://uny.ro">www.uny.ro</a>
+											Website: <a href="#">www.medone.com</a>
 										</div>
-										<div class="find-widget">
-											Program: <a href="#">Mon to Sat: 09:30 AM - 10.30 PM</a>
-										</div>
+										
 									</div>
 								
 							</div>
@@ -499,9 +414,7 @@ main {
 				<div class="row">
 					<div class="col-lg-12">
 						<p>
-							Copyright © 2021 SEO Dream Co., Ltd. All Rights Reserved. <br>Web
-							Designed by <a rel="nofollow" href="https://templatemo.com"
-								title="free CSS templates">TemplateMo</a>
+							Copyright © 2023 Holy Bugs. 
 						</p>
 					</div>
 				</div>

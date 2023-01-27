@@ -20,17 +20,14 @@
 </style>
 </head>
 <body>
-
 <%
-
 		session = request.getSession();
 		if (session.getAttribute("did") == "false" || session.getAttribute("did") == null) {
 			//	request.getRequestDispatcher("admin-login.jsp");
-			response.sendRedirect("doctor_login.jsp");
+			response.sendRedirect("home.jsp");
 
 		}
 %>
-
 <main>
 
 <nav class="navbar navbar-expand-sm bg-light navbar-light">

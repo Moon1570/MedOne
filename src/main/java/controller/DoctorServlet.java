@@ -72,6 +72,16 @@ public class DoctorServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 		}
+		else if (action.equals("logout")) {
+
+
+
+			session.removeAttribute("did");
+			session.removeAttribute("name");
+
+			request.setAttribute("action", "login");
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
+		} 
 		else if (action.equals("getAllPatients")) {
 			int did = (int) session.getAttribute("did");
 			DoctorModel doctorModel = db.getDoctorById(did);
