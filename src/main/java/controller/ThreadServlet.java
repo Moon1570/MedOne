@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import model.DoctorModel;
 import model.MessageModel;
 import model.PatientModel;
-
+import model.ReportModel;
 import model.ThreadModel;
 
 import java.io.IOException;

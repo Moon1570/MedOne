@@ -23,8 +23,8 @@ $('.datepicker').datepicker({
     <div class="row d-flex justify-content-center align-items-center h-100">
     <a class="navbar-brand row d-flex justify-content-center" href="#">
             <img src="https://i.ibb.co/ykQgB00/medone-logo-1.png"
-                 height="200"
-                 width="350"
+                 height="50"
+                 width="150"
                  alt="MDB Logo"
                  loading="lazy" />
         </a>
