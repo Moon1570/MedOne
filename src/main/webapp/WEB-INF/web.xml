@@ -47,6 +47,7 @@
     <servlet-name>DrugServlet</servlet-name>
     <url-pattern>/DrugServlet</url-pattern>
   </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ThreadServlet</display-name>
@@ -67,4 +68,5 @@
     <servlet-name>MessageServlet</servlet-name>
     <url-pattern>/messages</url-pattern>
   </servlet-mapping>
+
 </web-app>
