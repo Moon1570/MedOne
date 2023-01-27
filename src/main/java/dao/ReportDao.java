@@ -99,6 +99,21 @@ public class ReportDao {
 		}
 	}
 
+	public void deleteReport(ReportModel reportModel) {
+		// TODO Auto-generated method stub
+		Connection con = new Connection();
+
+		Session session = con.getSessionFactory().openSession();
+
+		Transaction transaction = session.beginTransaction();
+		session.delete(reportModel);
+		transaction.commit();
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		System.out.println("Deleted...");
+	}
+
 
 
 }

@@ -163,6 +163,12 @@ public class ReportServlet extends HttpServlet {
 				request.getRequestDispatcher("/full_screen_report.jsp").forward(request, response);
 
 		}
+		else if(action.equalsIgnoreCase("deleteReport")) {
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			ReportModel reportModel = db.getReportByReportId(rid);
+			db.deleteReport(reportModel);
+			response.sendRedirect("./report?action=viewAll");
+		}
 		
 	}
 

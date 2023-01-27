@@ -38,7 +38,8 @@
 		    height="200"
 		    src="./report?action=viewReport&rid=${report.reportId}">
 		</iframe>
-		<td><a href="./report?action=downloadReport&rid=${report.reportId}">Download</a> Edit Delete</td>
+		<td><a href="./report?action=downloadReport&rid=${report.reportId}">Download</a> 
+		 <a href="./report?action=deleteReport&rid=${report.reportId }">Delete</a></td>
 	</tr>
 	</c:forEach>
 </table>
