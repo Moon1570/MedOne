@@ -39,7 +39,7 @@ if(patientModel.getDoctors().isEmpty()){
 
 		</form>
 	</c:if>
-	<form action="./threads?addNewThread" method="post">
+	<form action="./threads?action=addNewThread" method="post">
 
 	${msg }
 		<select name="dropdownDoctor" required="required">
@@ -47,7 +47,7 @@ if(patientModel.getDoctors().isEmpty()){
 			<c:forEach items="${doctors}" var="doctor">
 				<option value="${doctor.doctorId}">${doctor.doctorName }</option>
 			</c:forEach>
-		</select>
+		</select> 
 		<button type="submit">Start a new conversation</button>
 	</form>
 </body>

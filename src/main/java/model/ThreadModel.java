@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,9 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "communications")
@@ -24,13 +30,19 @@ public class ThreadModel {
 	@Column(name="thread_id")
 	private int id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date")
+	private Date threadDate;
+
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private PatientModel patientModel;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private DoctorModel doctorModel;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.MERGE)
 	private Set<MessageModel> messageList;
 	
 	@Column(name = "attached_report_id")
@@ -76,6 +88,15 @@ public class ThreadModel {
 	public void setAttachedReport(Set<ReportModel> attachedReport) {
 		this.attachedReport = attachedReport;
 	}
+
+	public Date getThreadDate() {
+		return threadDate;
+	}
+
+	public void setThreadDate(Date threadDate) {
+		this.threadDate = threadDate;
+	}
+	
 	
 	
 }

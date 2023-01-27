@@ -42,6 +42,9 @@ public class PatientModel {
 	@Column(name = "patient_phone")
 	private String patientPhone;
 	
+	@Column(name = "blood_group")
+	private String bloodGroup;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "patient_dob")
 	private Date patientDOB;
@@ -153,6 +156,14 @@ public class PatientModel {
         this.doctors.remove(doctorModel);
         doctorModel.getPatients().remove(this);
     }
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
 	
 	
 	

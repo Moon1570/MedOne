@@ -135,6 +135,7 @@ public class PatientServlet extends HttpServlet {
 			String patientPhone = request.getParameter("patientPhone");
 			String patientPassword = request.getParameter("patientPassword");
 			String patientAddress = request.getParameter("patientAddress");
+			String bloodGroup = request.getParameter("bloodGroup");
 
 
 
@@ -172,7 +173,7 @@ public class PatientServlet extends HttpServlet {
 
 			patientModel.setPatientImage(bytes);
 			patientModel.setPatientAddress(patientAddress);
-
+			patientModel.setBloodGroup(bloodGroup);
 			patientModel.setPatientName(patientName);
 			patientModel.setPatientPhone(patientPhone);
 			patientModel.setPatientPassword(patientPassword);
