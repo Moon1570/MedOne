@@ -67,6 +67,9 @@
 							
 				</form>
  <br>
+ 
+
+ 
  <a href="./patients?action=logout">Logout</a>
  
  <script>

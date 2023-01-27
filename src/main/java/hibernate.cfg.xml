@@ -44,7 +44,8 @@
 		<mapping class="model.DoctorModel" />
 		<mapping class="model.ReportModel" />
 		<mapping class="model.DrugModel" />
-		
+		<mapping class="model.ThreadModel" />
+		<mapping class="model.MessageModel" />
 		
 		
 		

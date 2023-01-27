@@ -1,13 +1,18 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,16 +24,17 @@ public class ThreadModel {
 	@Column(name="thread_id")
 	private int id;
 	
-	@Column(name = "patient_id")
+	@OneToOne(cascade = CascadeType.ALL)
 	private PatientModel patientModel;
 	
-	@Column(name = "doctor_id")
+	@OneToOne(cascade = CascadeType.ALL)
 	private DoctorModel doctorModel;
 	
-	@Column(name = "message_id")
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<MessageModel> messageList;
 	
 	@Column(name = "attached_report_id")
+	@ElementCollection
 	private Set<ReportModel> attachedReport;
 
 	public int getId() {
@@ -70,4 +76,6 @@ public class ThreadModel {
 	public void setAttachedReport(Set<ReportModel> attachedReport) {
 		this.attachedReport = attachedReport;
 	}
+	
+	
 }
