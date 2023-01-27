@@ -56,11 +56,12 @@
         <a class="nav-link" href="./report?action=viewAll">My Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="doctor.jsp">My Doctors</a>
+        <a class="nav-link" href="my_doctors.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">Consult Online</a>
+        <a class="nav-link" href="./threads?action=startNewChat">Message Doctor</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="relative_list.jsp">My Relatives</a>
       </li>
@@ -76,13 +77,20 @@
     <div class="col-sm-3">
       <h2>About Me</h2>
       <h5>${name}</h5>
-      <img src="https://www.dlf.pt/dfpng/middlepng/569-5693658_dummy-user-image-png-transparent-png.png" alt="DP" class="img-thumbnail">
+      <img src="./patients?action=getImage&pid=${pid }" alt="DP" class="img-thumbnail">
       <p>Blood Group: <b>A+</b></p>
       <br><br>
       <h3>Add Relative:</h3>
       <form class="" action="./patients?action=addRelativesByPhone" method="post">
  			<input type="text" name="relativePhoneNumber" placeholder="enter relative's phone number"> <br>
 			<button type="submit" class="btn btn-primary btn-md">Add relatives</button>
+							
+		</form>
+		<br><br><br>
+		<h3>Add Doctor:</h3>
+      <form class="" action="./patients?action=addDoctorsByPhone" method="post">
+ 			<input type="text" name="doctorPhoneNumber" placeholder="enter doctor's phone number"> <br>
+			<button type="submit" class="btn btn-primary btn-md">Add Doctor</button>
 							
 		</form>
       <!-- <h3>Some Links</h3>
@@ -127,8 +135,9 @@
  						<input type="text" name="reportName" placeholder="enter report name" class="form-control"> <br><br>
  						<input class="input-field" type="file" name="reportImage" required="required" id="file" onchange="return fileValidation()">
 						<br>
+
 						<button type="submit" class="btn btn-primary btn-md">upload</button>
-							
+
 	  </form>
       <br><br><br>
       <h2>Latest Advices from Doctors</h2>
@@ -140,6 +149,7 @@
           <a href="#" class="btn btn-primary">See Profile</a>
         </div>
       </div>
+      
       <!-- <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> -->
     </div>
@@ -149,44 +159,10 @@
 
 <footer class="text-center text-lg-start bg-light text-muted">
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2023 Copyright:
+    Â© 2023 Copyright:
     <p class="text-reset fw-bold">Holy Bugs</p>
   </div>
 </footer>
- 
- <script>
-        function fileValidation() {
-            var fileInput =
-                document.getElementById('file');
-             
-            var filePath = fileInput.value;
-         
-            // Allowing file type
-            var allowedExtensions =
-                    /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-             
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Invalid file type');
-                fileInput.value = '';
-                return false;
-            }
-            else
-            {
-             
-                // Image preview
-                if (fileInput.files && fileInput.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        document.getElementById(
-                            'imagePreview').innerHTML =
-                            '<img src="' + e.target.result
-                            + '"/>';
-                    };
-                     
-                    reader.readAsDataURL(fileInput.files[0]);
-                }
-            }
-        }
-    </script>
+
 </body>
 </html>

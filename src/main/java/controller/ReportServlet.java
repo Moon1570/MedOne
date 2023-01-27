@@ -61,10 +61,9 @@ public class ReportServlet extends HttpServlet {
 
 
 		
+		int pid = (int) session.getAttribute("pid");
 		
 		if (action.equals("viewAll")) {
-			int pid = (int) session.getAttribute("pid");
-
 			List<ReportModel> reportModels = db.getAllReportByPatientId(pid);
 			System.out.println(reportModels.get(0).getReportName());
 			request.setAttribute("reports", reportModels);
@@ -163,6 +162,12 @@ public class ReportServlet extends HttpServlet {
 				request.setAttribute("report", reportModel);
 				request.getRequestDispatcher("/full_screen_report.jsp").forward(request, response);
 
+		}
+		else if(action.equalsIgnoreCase("deleteReport")) {
+			int rid = Integer.parseInt(request.getParameter("rid"));
+			ReportModel reportModel = db.getReportByReportId(rid);
+			db.deleteReport(reportModel);
+			response.sendRedirect("./report?action=viewAll");
 		}
 		
 	}

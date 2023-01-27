@@ -1,11 +1,15 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import model.DoctorModel;
 import model.PatientModel;
+import model.ReportModel;
 
 public class DoctorDao {
 
@@ -99,6 +103,42 @@ public class DoctorDao {
 		session.close();
 		con.closeSessionFactory();
 		System.out.println("Updated...");
+	}
+
+	public DoctorModel getDoctorByPhone(String doctorsPhone) {
+		// TODO Auto-generated method stub
+		String query = "from DoctorModel doctor where doctor.doctorPhone=" + doctorsPhone;
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+		
+		Query queryExecuteable = session.createQuery(query);
+		if(queryExecuteable.list().isEmpty()) {
+			return null;
+		} else {
+			DoctorModel doctors = (DoctorModel) queryExecuteable.list().get(0);
+			session.flush();
+			session.close();
+			con.closeSessionFactory();
+			return doctors;
+		}
+	}
+
+	public List<DoctorModel> getAllDoctorsByPatientId(int pid) {
+		// TODO Auto-generated method stub
+		String query = "from DoctorModel d join d.patients p where p.patientId=:id";
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		Query queryExecuteable = session.createQuery(query);
+		List<DoctorModel> doctors=new ArrayList<>();
+		doctors = queryExecuteable.list();
+		
+
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+
+		return doctors;
 	}
 
 }

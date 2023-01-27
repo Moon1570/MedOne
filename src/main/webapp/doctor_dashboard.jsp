@@ -22,10 +22,7 @@
 <body>
 
 <%
-		response.setHeader("Cache-Control","no-cache");
-		response.setHeader("Cache-Control","no-store");
-		response.setHeader("Pragma","no-cache");
-		response.setDateHeader ("Expires", 0);
+
 		session = request.getSession();
 		if (session.getAttribute("did") == "false" || session.getAttribute("did") == null) {
 			//	request.getRequestDispatcher("admin-login.jsp");
@@ -77,7 +74,7 @@
     <div class="col-sm-3">
       <h4>Welcome,</h4>
       <h3>Doctor, ${name}</h3>
-      <img src="https://www.dlf.pt/dfpng/middlepng/569-5693658_dummy-user-image-png-transparent-png.png" alt="DP" class="img-thumbnail">
+      <img src="./doctors?action=getImage&did=${did}" alt="DP" class="img-thumbnail">
       <p>Blood Group: <b>A+</b></p>
       <br><br>
       <h3>Add Patient:</h3>

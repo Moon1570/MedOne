@@ -36,23 +36,7 @@ public class ReportDao {
 		Query queryExecuteable = session.createQuery(query);
 		List<ReportModel> reportModels=new ArrayList<>();
 		reportModels = queryExecuteable.list();
-		/*
-		java.util.Iterator<CartDetailsModel> it = cartDetailsModels.iterator();
-
-		List<CartDetailsModel> cartDetailsModels2 = new ArrayList<CartDetailsModel>();
 		
-		while (it.hasNext()) {
-			Object type = (Object) it.next();
-
-			CartDetailsModel sub =  (CartDetailsModel) type;
-			if (sub.getCartId().getCartId() == cartId) {
-				cartDetailsModels2.add(sub);
-				
-				System.out.println(cartDetailsModels);
-			}
-
-		}
-		*/
 
 		session.flush();
 		session.close();
@@ -97,6 +81,21 @@ public class ReportDao {
 		} else {
 			return reportModels.get(0);
 		}
+	}
+
+	public void deleteReport(ReportModel reportModel) {
+		// TODO Auto-generated method stub
+		Connection con = new Connection();
+
+		Session session = con.getSessionFactory().openSession();
+
+		Transaction transaction = session.beginTransaction();
+		session.delete(reportModel);
+		transaction.commit();
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		System.out.println("Deleted...");
 	}
 
 
