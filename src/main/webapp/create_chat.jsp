@@ -48,6 +48,7 @@ if(patientModel.getDoctors().isEmpty()){
 				<option value="${doctor.doctorId}">${doctor.doctorName }</option>
 			</c:forEach>
 		</select> 
+		<input type="hidden" value="${pid }" name="pid">
 		<button type="submit">Start a new conversation</button>
 	</form>
 </body>

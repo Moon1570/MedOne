@@ -65,4 +65,19 @@ public class ThreadDao {
 		return thread;
 	}
 
+	public void updateThread(ThreadModel threadModel) {
+		// TODO Auto-generated method stub
+		Connection con = new Connection();
+
+		Session session = con.getSessionFactory().openSession();
+
+		Transaction transaction = session.beginTransaction();
+		session.update(threadModel);
+		transaction.commit();
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		System.out.println("Updated...");
+	}
+
 }

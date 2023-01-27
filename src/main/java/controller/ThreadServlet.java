@@ -51,9 +51,8 @@ public class ThreadServlet extends HttpServlet {
 		if (action.equals("myThreads")) {
 			
 			HttpSession session = request.getSession();
-			
 			int pid = (int)session.getAttribute("pid");
-			
+			request.setAttribute("pid", pid);
 			List<ThreadModel> threadModels = threadDao.getAllThreadByPatientId(pid);
 			
 			if (threadModels.isEmpty()) {
@@ -70,6 +69,9 @@ public class ThreadServlet extends HttpServlet {
 			ThreadModel thread = threadDao.getThreadByThreadId(threadId);
 			Set<MessageModel> messages = thread.getMessageList();
 			request.setAttribute("threadId", threadId);
+			request.setAttribute("ddid", thread.getDoctorModel().getDoctorId());
+			request.setAttribute("pid", thread.getPatientModel().getPatientId());
+
 			if (messages.isEmpty()) {
 				request.setAttribute("flag", 0);
 			} else {
@@ -92,11 +94,11 @@ public class ThreadServlet extends HttpServlet {
 
 		if (action.equals("addNewThread")) {
 			
-			int did = Integer.parseInt(request.getParameter("dropdownDoctor"));
+			int ddid = Integer.parseInt(request.getParameter("dropdownDoctor"));
 
-			System.out.println("doctor ID = "+ did);
+			System.out.println("doctor ID = "+ ddid);
 			
-			if(did == 0) {
+			if(ddid == 0) {
 				request.setAttribute("msg", "please select a doctor.");
 				request.getRequestDispatcher("/create_chat.jsp").forward(request, response);
 			}
@@ -105,7 +107,7 @@ public class ThreadServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				int pid = (int)session.getAttribute("pid");
 				PatientModel patientModel = patientDao.getPatientById(pid);
-				DoctorModel doctorModel = doctorDao.getDoctorById(did);
+				DoctorModel doctorModel = doctorDao.getDoctorById(ddid);
 				threadModel.setDoctorModel(doctorModel);
 				threadModel.setPatientModel(patientModel);
 				
@@ -115,6 +117,8 @@ public class ThreadServlet extends HttpServlet {
 				//request.getRequestDispatcher("my_chats.jsp").forward(request, response);
 
 			}
+		} else if (action.equals("shareReport")) {
+			
 		}
 		
 	}

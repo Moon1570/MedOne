@@ -22,10 +22,13 @@ public class MessageModel {
 	@Column(name = "message_id")
 	private int messageId;
 	
-	@Column(name = "is_patient")
-	private boolean isPatient;
+	@Column(name = "sender")
+	private String sender;
 	
-	@Column(name = "name")
+	@Column(name = "receiver")
+	private String receiver;
+	
+	@Column(name = "message")
 	private String messages;
 	
 	@CreationTimestamp
@@ -49,13 +52,7 @@ public class MessageModel {
 		this.messages = messages;
 	}
 
-	public boolean isPatient() {
-		return isPatient;
-	}
 
-	public void setPatient(boolean isPatient) {
-		this.isPatient = isPatient;
-	}
 
 	public Date getMessageDate() {
 		return messageDate;
@@ -64,6 +61,23 @@ public class MessageModel {
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
 	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
 	
 	
 }
