@@ -12,10 +12,10 @@ int pid = (int) session.getAttribute("pid");
 PatientDao db = new PatientDao();
 PatientModel patientModel = db.getPatientById(pid);
 
-
-if(patientModel.getDoctors().isEmpty()){
+if (patientModel.getDoctors().isEmpty()) {
 	request.setAttribute("flag", "0");
-} else{
+} else {
+	request.setAttribute("flag", "1");
 	request.setAttribute("doctors", patientModel.getDoctors());
 
 }
@@ -27,42 +27,45 @@ if(patientModel.getDoctors().isEmpty()){
 		action="./patients?action=addDoctorsByPhone" method="post">
 
 		<input type="text" name="doctorPhoneNumber"
-			placeholder="enter doctor phone"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary">Add
-			Doctor</button>
+			placeholder="enter doctor phone">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">Add Doctor</button>
 
 	</form>
-	
+
 </c:if>
 
 
 <c:if test="${flag == 1 }">
-		<form action="./threads?action=addNewThread" method="post">
+	<form action="./threads?action=addNewThread" method="post">
 
+		<input type="text" name="threadNamer"><br> 
+		<select
+			name="dropdownDoctor" class="form-group" required="required">
 
-	<select name="dropdownDoctor" class="form-group" required="required">
+			<option value="0">Please select a doctor</option>
+			<c:forEach items="${doctors}" var="doctor">
+				<option value="${doctor.doctorId}">${doctor.doctorName }</option>
+			</c:forEach>
+		</select> <br>
+		<button type="submit">Start a new conversation</button>
+	</form>
 
-		<option value="0">Please select a doctor</option>
-		<c:forEach items="${doctors}" var="doctor">
-			<option value="${doctor.doctorId}">${doctor.doctorName }</option>
-		</c:forEach>
-	</select> <br>
-	<button type="submit">Start a new conversation</button>
-</form>
-	
 </c:if>
 
-<hr/>	
+<hr />
 <h2 class="h2">My threads</h2>
 
 <table class="table table-striped">
 	<tr>
-		<th>Name</th>
+		<th>Topic</th>
+		<th>Doctor</th>
 		<th>Date</th>
 		<th>Action</th>
 	</tr>
 	<c:forEach items="${threads }" var="thread">
 		<tr>
+			<td>${thread.threadName }</td>
 			<td>${thread.doctorModel.doctorName }</td>
 			<td>${thread.threadDate }</td>
 

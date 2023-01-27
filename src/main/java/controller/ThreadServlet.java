@@ -61,7 +61,7 @@ public class ThreadServlet extends HttpServlet {
 				request.getRequestDispatcher("create_chat.jsp").forward(request, response);
 			} else {
 				request.setAttribute("threads", threadModels);
-				request.getRequestDispatcher("my_chats.jsp").forward(request, response);
+				request.getRequestDispatcher("create_chat.jsp").forward(request, response);
 			}
 
 		} else if(action.equals("startNewChat")) {
@@ -125,6 +125,7 @@ public class ThreadServlet extends HttpServlet {
 
 			int ddid = Integer.parseInt(request.getParameter("dropdownDoctor"));
 
+			String threadName = request.getParameter("threadNamer");
 			System.out.println("doctor ID = "+ ddid);
 
 			if(ddid == 0) {
@@ -140,6 +141,7 @@ public class ThreadServlet extends HttpServlet {
 				DoctorModel doctorModel = doctorDao.getDoctorById(ddid);
 				threadModel.setDoctorModel(doctorModel);
 				threadModel.setPatientModel(patientModel);
+				threadModel.setThreadName(threadName);
 
 				threadDao.saveThread(threadModel);
 

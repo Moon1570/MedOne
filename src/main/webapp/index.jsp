@@ -73,6 +73,7 @@
 </nav>
 
 <div class="container" style="margin-top:30px">
+<h2 class="h2" style="color: red;" align="center">${msg }</h2>
   <div class="row">
     <div class="col-sm-3">
       <h2>About Me</h2>

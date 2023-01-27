@@ -36,6 +36,8 @@ public class ThreadModel {
 	@Column(name = "create_date")
 	private Date threadDate;
 
+	@Column(name = "thread_name")
+	private String threadName;
 	
 	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private PatientModel patientModel;
@@ -96,6 +98,14 @@ public class ThreadModel {
 
 	public void setThreadDate(Date threadDate) {
 		this.threadDate = threadDate;
+	}
+
+	public String getThreadName() {
+		return threadName;
+	}
+
+	public void setThreadName(String threadName) {
+		this.threadName = threadName;
 	}
 	
 	

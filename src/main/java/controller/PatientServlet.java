@@ -252,8 +252,11 @@ public class PatientServlet extends HttpServlet {
 
 			if(relativeModel == null) {
 				request.setAttribute("relStatus", "0");
+				request.setAttribute("msg", "No member found with this phone");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} else if(relativeModel.getPatientId() == pid){
-				request.setAttribute("relStatus", "2");
+				request.setAttribute("msg", "Can't add yourself as relative");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} 
 			else {
 				Map<Integer, String> relativeMap = patientModel.getRelatives();
@@ -261,8 +264,8 @@ public class PatientServlet extends HttpServlet {
 					request.setAttribute("relStatus", "1");
 					request.setAttribute("relative", relativeModel);
 				} else if(relativeMap.containsKey(relativeModel.getPatientId())){
-					request.setAttribute("relStatus", "3");
-					request.setAttribute("relative", relativeModel);
+					request.setAttribute("msg", "Already a relative");
+					request.getRequestDispatcher("index.jsp").forward(request, response);
 				} else {
 					request.setAttribute("relStatus", "1");
 					request.setAttribute("relative", relativeModel);
