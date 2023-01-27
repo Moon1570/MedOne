@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.apache.commons.io.IOUtils;
 
+import dao.DoctorDao;
 import dao.PatientDao;
 import dao.ReportDao;
 import jakarta.servlet.ServletException;
@@ -37,6 +38,7 @@ public class PatientServlet extends HttpServlet {
        
 	PatientDao db = new PatientDao();
 	ReportDao rdb = new ReportDao();
+	DoctorDao ddb= new DoctorDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -82,7 +84,7 @@ public class PatientServlet extends HttpServlet {
 			request.setAttribute("action", "login");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} 
-else if (action.equals("getImage")) {
+		else if (action.equals("getImage")) {
 		
 			int pid = Integer.parseInt(request.getParameter("pid"));
 			PatientModel patientModel = db.getPatientById(pid);
@@ -94,6 +96,14 @@ else if (action.equals("getImage")) {
 			os.flush();
 			os.close();
 		} 
+		else if(action.equalsIgnoreCase("getAllDoctors")) {
+			
+			int pid = (int) session.getAttribute("pid");
+			PatientModel patientModel = db.getPatientById(pid);
+			
+			
+			
+		}
 	}
 
 	
@@ -258,6 +268,20 @@ else if (action.equals("getImage")) {
 			request.setAttribute("rmsg", "relative added");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
+			
+		} else if(action.equalsIgnoreCase("addDoctorsByPhone")) {
+			String doctorsPhone= request.getParameter("doctorPhoneNumber");
+			HttpSession session=request.getSession();
+
+			DoctorModel doctorModel = ddb.getDoctorByPhone(doctorsPhone);
+			int pid = (int) session.getAttribute("pid");
+
+			request.setAttribute("docStatus", "1");
+			request.setAttribute("doctor", doctorModel);
+			
+
+			
+			request.getRequestDispatcher("/view_doctor.jsp").forward(request, response);
 			
 		}
 	}

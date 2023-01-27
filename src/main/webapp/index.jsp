@@ -58,6 +58,15 @@
 	
   <a href="drugs.jsp">Drugs</a>
  <br>
+   <a href="./patients?action=getMyDoctors">My Doctors</a>
+ <br>
+ <form class="mx-1 mx-md-4" action="./patients?action=addDoctorsByPhone" method="post" target=_blank>
+ 
+ 							<input type="text" name="doctorPhoneNumber" placeholder="enter doctor phone"> <br>
+						<button type="submit" class="btn btn-primary btn-lg">Add Doctor</button>
+							
+				</form>
+ <br>
  <a href="./patients?action=logout">Logout</a>
  
  <script>
