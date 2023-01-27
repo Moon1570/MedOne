@@ -56,7 +56,7 @@
         <a class="nav-link" href="./report?action=viewAll">My Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="doctor.jsp">My Doctors</a>
+        <a class="nav-link" href="my_doctors.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="chat.jsp">Consult Online</a>
@@ -76,7 +76,7 @@
     <div class="col-sm-3">
       <h2>About Me</h2>
       <h5>${name}</h5>
-      <img src="https://www.dlf.pt/dfpng/middlepng/569-5693658_dummy-user-image-png-transparent-png.png" alt="DP" class="img-thumbnail">
+      <img src="./patients?action=getImage&pid=${pid }" alt="DP" class="img-thumbnail">
       <p>Blood Group: <b>A+</b></p>
       <br><br>
       <h3>Add Relative:</h3>

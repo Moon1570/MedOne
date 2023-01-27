@@ -7,11 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.DoctorModel;
+import model.MessageModel;
 import model.PatientModel;
 import model.ThreadModel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import dao.DoctorDao;
 import dao.MessageDao;
@@ -63,6 +65,18 @@ public class ThreadServlet extends HttpServlet {
 			
 		} else if(action.equals("startNewChat")) {
 			request.getRequestDispatcher("create_chat.jsp").forward(request, response);
+		} else if(action.equals("openThread")) {
+			int threadId = Integer.parseInt(request.getParameter("threadId"));
+			ThreadModel thread = threadDao.getThreadByThreadId(threadId);
+			Set<MessageModel> messages = thread.getMessageList();
+			request.setAttribute("threadId", threadId);
+			if (messages.isEmpty()) {
+				request.setAttribute("flag", 0);
+			} else {
+				request.setAttribute("flag", 1);
+				request.setAttribute("messages", messages);
+			}
+			request.getRequestDispatcher("chat_page.jsp").forward(request, response);
 		}
 
 	}

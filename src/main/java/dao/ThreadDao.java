@@ -2,12 +2,15 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import model.DoctorModel;
+import model.MessageModel;
+import model.PatientModel;
 import model.ReportModel;
 import model.ThreadModel;
 
@@ -44,6 +47,22 @@ public class ThreadDao {
 		con.closeSessionFactory();
 
 		return threadModels;
+	}
+
+	public ThreadModel getThreadByThreadId(int threadId) {
+		// TODO Auto-generated method stub
+		String query = "from ThreadModel thread where thread.id=" + threadId;
+		Connection con = new Connection();
+		Session session = con.getSessionFactory().openSession();
+
+		
+		
+		Query queryExecuteable = session.createQuery(query);
+		ThreadModel thread = (ThreadModel) queryExecuteable.list().get(0);
+		session.flush();
+		session.close();
+		con.closeSessionFactory();
+		return thread;
 	}
 
 }
