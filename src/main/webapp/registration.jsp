@@ -27,7 +27,7 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registration</p>
 
-                <form class="mx-1 mx-md-4" action="./patients?action=login" method="post" enctype="multipart/form-data">
+                <form class="mx-1 mx-md-4" action="./patients?action=reg" method="post" enctype="multipart/form-data">
 
 
                   

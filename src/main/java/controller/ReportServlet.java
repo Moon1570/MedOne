@@ -33,37 +33,37 @@ import dao.ReportDao;
 
 public class ReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	ReportDao db = new ReportDao();
 	PatientDao pdb = new PatientDao();
 
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReportServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ReportServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");		
 		HttpSession session = request.getSession();
-		
-		
+
+
 		String action = request.getParameter("action");
 
 
-		
-		int pid = (int) session.getAttribute("pid");
-		
+
+
 		if (action.equals("viewAll")) {
+			int pid = (int) session.getAttribute("pid");
 			List<ReportModel> reportModels = db.getAllReportByPatientId(pid);
 			System.out.println(reportModels.get(0).getReportName());
 			request.setAttribute("reports", reportModels);
@@ -71,70 +71,50 @@ public class ReportServlet extends HttpServlet {
 			request.getRequestDispatcher("/view_reports.jsp").forward(request, response);
 		}
 		else if(action.equals("viewReport")) {
+			int pid = (int) session.getAttribute("pid");
+
 			int rid = Integer.parseInt(request.getParameter("rid"));
 			ReportModel reportModel = db.getReportByReportId(rid);
 			if(reportModel.isImage()) {
 				byte[] image = reportModel.getReportFile();
 
-				/*
-								response.setContentType("application/pdf");
 
-								response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".pdf");
-								response.setStatus(HttpServletResponse.SC_OK);
-								OutputStream out = response.getOutputStream();
-								System.out.println(pdfData.length);
-								         
-								out.write(pdfData);
-								System.out.println("sendDone");
-								out.flush();
-								
-								*/
-								OutputStream os = response.getOutputStream();
-								os.write(image);
-								os.flush();
-								os.close();
+				OutputStream os = response.getOutputStream();
+				os.write(image);
+				os.flush();
+				os.close();
 			}
 			else {
 				byte[] pdfData = reportModel.getReportFile();
 
-/*
-				response.setContentType("application/pdf");
 
-				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".pdf");
-				response.setStatus(HttpServletResponse.SC_OK);
-				OutputStream out = response.getOutputStream();
-				System.out.println(pdfData.length);
-				         
-				out.write(pdfData);
-				System.out.println("sendDone");
-				out.flush();
-				
-				*/
 				OutputStream os = response.getOutputStream();
 				os.write(pdfData);
 				os.flush();
 				os.close();
-				
+
 			}
-			
+
 		}
 		else if(action.equals("downloadReport")) {
+			int pid = (int) session.getAttribute("pid");
+
 			int rid = Integer.parseInt(request.getParameter("rid"));
 			ReportModel reportModel = db.getReportByReportId(rid);
 			if(reportModel.isImage()) {
 				byte[] image = reportModel.getReportFile();
 
-								response.setContentType("application/pdf");
+				response.setContentType("application/pdf");
 
-								response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".jpeg");
-								response.setStatus(HttpServletResponse.SC_OK);
-								OutputStream out = response.getOutputStream();
-								System.out.println(image.length);
-								         
-								out.write(image);
-								System.out.println("sendDone");
-								out.flush();
-								
+				response.addHeader("Content-Disposition", "attachment; filename="+reportModel.getReportName()+".jpeg");
+				response.setStatus(HttpServletResponse.SC_OK);
+				OutputStream out = response.getOutputStream();
+				System.out.println(image.length);
+
+				out.write(image);
+				System.out.println("sendDone");
+				out.flush();
+
 
 			}
 			else {
@@ -146,30 +126,57 @@ public class ReportServlet extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_OK);
 				OutputStream out = response.getOutputStream();
 				System.out.println(pdfData.length);
-				         
+
 				out.write(pdfData);
 				System.out.println("sendDone");
 				out.flush();
-				
+
 
 			}
-			
+
 		}
 		else if(action.equals("viewReportFullScreen")) {
+			int pid = (int) session.getAttribute("pid");
+
 			int rid = Integer.parseInt(request.getParameter("rid"));
 			ReportModel reportModel = db.getReportByReportId(rid);
-		
-				request.setAttribute("report", reportModel);
-				request.getRequestDispatcher("/full_screen_report.jsp").forward(request, response);
+
+			request.setAttribute("report", reportModel);
+			request.getRequestDispatcher("/full_screen_report.jsp").forward(request, response);
 
 		}
 		else if(action.equalsIgnoreCase("deleteReport")) {
+			int pid = (int) session.getAttribute("pid");
+
 			int rid = Integer.parseInt(request.getParameter("rid"));
 			ReportModel reportModel = db.getReportByReportId(rid);
 			db.deleteReport(reportModel);
 			response.sendRedirect("./report?action=viewAll");
+		} else if(action.equals("viewSingleLastReport")) {
+			int pid = (int) session.getAttribute("pid");
+			ReportModel reportModel = db.getLastReportByPatientId(pid);
+			
+			
+			if(reportModel.isImage()) {
+				byte[] image = reportModel.getReportFile();
+				OutputStream os = response.getOutputStream();
+				os.write(image);
+				os.flush();
+				os.close();
+			}
+			else {
+				byte[] pdfData = reportModel.getReportFile();
+
+
+				OutputStream os = response.getOutputStream();
+				os.write(pdfData);
+				os.flush();
+				os.close();
+
+			}
+
 		}
-		
+
 	}
 
 	/**
@@ -180,45 +187,45 @@ public class ReportServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		if (action.equals("reportUpload")) {
-			
+
 			String reportName = request.getParameter("reportName");
-			
-			
-			
+
+
+
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");  
 			LocalDateTime now = LocalDateTime.now();  
 			String time = (dtf.format(now));
-			
+
 			Timestamp instant= Timestamp.from(Instant.now()); 
 			System.out.println(instant);
-			
+
 			Part part = request.getPart("reportImage");
-						
+
 			InputStream inputStream = null;
-			
-			
-			
+
+
+
 			inputStream = part.getInputStream();
 			byte[] bytes = IOUtils.toByteArray(inputStream);
-			
+
 			ReportModel model = new ReportModel();
-		
+
 			HttpSession session=request.getSession();
-			
+
 			int pid = (int) session.getAttribute("pid");
-			
+
 			PatientModel patientModel = pdb.getPatientById(pid);
-			
-			
+
+
 			model.setImage(true);
 			model.setReportFile(bytes);
 			model.setReportCreateDate(instant);
 			model.setReportModifyDate(instant);
 			model.setPatient(patientModel);
 			model.setReportName(reportName);
-			
+
 			String fileType = part.getContentType();
 			if (fileType.contains("pdf")) {
 				model.setImage(false);
@@ -226,11 +233,11 @@ public class ReportServlet extends HttpServlet {
 				model.setImage(true);
 			}
 			db.saveReport(model);
-			
+
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 		}
-		
+
 	}
 
 }

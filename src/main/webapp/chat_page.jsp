@@ -74,14 +74,14 @@
 		</c:if>
 		
 		<c:if test="${flag_rep == 1 }">
-		<form action="./threads?action=shareReport&threadId=${threadId }">
+		<form action="./threads?action=shareReport&threadId=${threadId }" method="post">
 		<select name="dropdownReport" required="required">
 			<option value="0">Share a report</option>
 			<c:forEach items="${reports}" var="report">
 				<option value="${report.reportId}">${report.reportName }</option>
 			</c:forEach>
 		</select> 
-		<button type="button">Share</button>
+		<button type="submit">Share</button>
 		</form>
 		</c:if>
 		<hr/>
