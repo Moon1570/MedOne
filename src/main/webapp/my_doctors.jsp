@@ -38,7 +38,7 @@ request.setAttribute("doctors", patientModel.getDoctors());
 			<td scope="row">${doctor.doctorName }</td>
 			<td>${ doctor.doctorAddress}</td>
 			<td>${doctor.doctorPhone }</td>
-			<td><img src="./doctors?action=getImage&did=${doctor.doctorId }"></td>
+			<td><img src="./doctors?action=getImage&did=${doctor.doctorId }" width="100px" height="100px"></td>
 			<td><a href="./patients?action=deleteDoctorFromPatientList&did=${doctor.doctorId }">Delete</a></td>
 		<!-- 	<c:if test="${report.image}">                            
 			<td>Image</td>

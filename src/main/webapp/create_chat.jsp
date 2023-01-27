@@ -6,8 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="patient_header.jsp" />
-<br>
-<br>
+
 <%
 int pid = (int) session.getAttribute("pid");
 PatientDao db = new PatientDao();
@@ -25,17 +24,20 @@ if(patientModel.getDoctors().isEmpty()){
 <c:if test="${flag == 0 }">
 		You don't have any doctors. Add one now? 
 		 <form class="mx-1 mx-md-4"
-		action="./patients?action=addDoctorsByPhone" method="post"
-		target=_blank>
+		action="./patients?action=addDoctorsByPhone" method="post">
 
 		<input type="text" name="doctorPhoneNumber"
-			placeholder="enter doctor phone"> <br>
-		<button type="submit" class="btn btn-primary btn-lg">Add
+			placeholder="enter doctor phone"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">Add
 			Doctor</button>
 
 	</form>
+	
 </c:if>
-<form action="./threads?action=addNewThread" method="post">
+
+
+<c:if test="${flag == 1 }">
+		<form action="./threads?action=addNewThread" method="post">
 
 
 	<select name="dropdownDoctor" class="form-group" required="required">
@@ -47,7 +49,10 @@ if(patientModel.getDoctors().isEmpty()){
 	</select> <br>
 	<button type="submit">Start a new conversation</button>
 </form>
+	
+</c:if>
 
+<hr/>	
 <h2 class="h2">My threads</h2>
 
 <table class="table table-striped">
