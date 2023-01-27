@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="patient_header.jsp" />
+
 	<%
 int pid = (int) session.getAttribute("pid");
 PatientDao db = new PatientDao();
@@ -38,6 +39,7 @@ if(patientModel.getDoctors().isEmpty()){
 	${msg }
 		
 		<select name="dropdownDoctor form-group" required="required">
+
 			<option value="0">Please select a doctor</option>
 			<c:forEach items="${doctors}" var="doctor">
 				<option value="${doctor.doctorId}">${doctor.doctorName }</option>
@@ -54,6 +56,7 @@ if(patientModel.getDoctors().isEmpty()){
     <p class="text-reset fw-bold">Holy Bugs</p>
   </div>
 </footer>
+
 
 </body>
 </html>

@@ -5,6 +5,7 @@
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <jsp:include page="header.jsp" />
+
 <%
 
 int pid = (int) session.getAttribute("pid");
@@ -55,10 +56,11 @@ request.setAttribute("doctors", patientModel.getDoctors());
 </main>
 <footer class="text-center text-lg-start bg-light text-muted">
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2023 Copyright:
+    ï¿½ 2023 Copyright:
     <p class="text-reset fw-bold ">Holy Bugs</p>
   </div>
 </footer>
+
 
 </body>
 </html>

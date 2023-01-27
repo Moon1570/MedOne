@@ -5,6 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.http.HttpSession;
+
 import model.MessageModel;
 import model.ThreadModel;
 
@@ -62,16 +65,29 @@ public class MessageServlet extends HttpServlet {
 
 			messageModel.setMessages(message);
 			messageModel.setMessageDate(instant);
-			messageModel.setPatient(true);
+
+
+			System.out.println(request.getParameter("ddid"));
+			if (request.getParameter("pid") != null && request.getParameter("ddid") != null) {
+				int pid = Integer.parseInt(request.getParameter("pid"));
+				int ddid = Integer.parseInt(request.getParameter("ddid"));
+				//	request.getRequestDispatcher("admin-login.jsp");
+				messageModel.setSender(patientDao.getPatientById(pid).getPatientName());
+				messageModel.setReceiver(doctorDao.getDoctorById(ddid).getDoctorName());
+			}
 			
 			
 			
 			
-			messageDao.saveMessage(messageModel);
-			System.out.println(messageModel.getMessageId());
-			ThreadModel threadModel = threadDao.getThreadByThreadId(threadId);
-			Set<MessageModel> messages = threadModel.getMessageList();
-			messages.add(messageModel);
+
+			  messageDao.saveMessage(messageModel);
+			  System.out.println(messageModel.getMessageId()); ThreadModel threadModel =
+			  threadDao.getThreadByThreadId(threadId); Set<MessageModel> messages =
+			  threadModel.getMessageList(); messages.add(messageModel);
+			  threadModel.setMessageList(messages); threadDao.updateThread(threadModel);
+			  response.sendRedirect("./threads?action=openThread&threadId="+threadId);
+			 
+			 
 		}
 	}
 
