@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import model.DoctorModel;
 import model.MessageModel;
 import model.PatientModel;
+import model.ReportModel;
 import model.ThreadModel;
 
 import java.io.IOException;
@@ -118,6 +119,16 @@ public class ThreadServlet extends HttpServlet {
 
 			}
 		} else if (action.equals("shareReport")) {
+			int threadId = Integer.parseInt(request.getParameter("threadId"));
+			
+			int reportId = Integer.parseInt(request.getParameter("dropdownReport"));
+			
+			ThreadModel threadModel = threadDao.getThreadByThreadId(threadId);
+			ReportModel reportModel = reportDao.getReportByReportId(reportId);
+			
+			Set<ReportModel> reportSet = threadModel.getAttachedReport();
+			reportSet.add(reportModel);
+			threadDao.updateThread(threadModel);
 			
 		}
 		
