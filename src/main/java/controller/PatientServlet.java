@@ -96,10 +96,15 @@ public class PatientServlet extends HttpServlet {
 			os.flush();
 			os.close();
 		} 
-		else if(action.equalsIgnoreCase("getAllDoctors")) {
+		else if(action.equalsIgnoreCase("getMyDoctors")) {
 			
 			int pid = (int) session.getAttribute("pid");
+
 			PatientModel patientModel = db.getPatientById(pid);
+			
+			request.setAttribute("doctors", patientModel.getDoctors());
+			
+			request.getRequestDispatcher("my_doctors.jsp").forward(request, response);
 			
 			
 			
@@ -289,11 +294,10 @@ public class PatientServlet extends HttpServlet {
 			int pid = (int) session.getAttribute("pid");
 			PatientModel patientModel = db.getPatientById(pid);
 			
-			Set<DoctorModel> doctorModels = patientModel.getDoctors();
-			doctorModels.add(doctorModel);
-			patientModel.setDoctors(doctorModels);
-			db.updatePatient(patientModel);
-			
+			Set<PatientModel> patients = doctorModel.getPatients();
+			patients.add(patientModel);
+			ddb.updateDoctor(doctorModel);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 
 			
 		}

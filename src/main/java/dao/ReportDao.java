@@ -36,23 +36,7 @@ public class ReportDao {
 		Query queryExecuteable = session.createQuery(query);
 		List<ReportModel> reportModels=new ArrayList<>();
 		reportModels = queryExecuteable.list();
-		/*
-		java.util.Iterator<CartDetailsModel> it = cartDetailsModels.iterator();
-
-		List<CartDetailsModel> cartDetailsModels2 = new ArrayList<CartDetailsModel>();
 		
-		while (it.hasNext()) {
-			Object type = (Object) it.next();
-
-			CartDetailsModel sub =  (CartDetailsModel) type;
-			if (sub.getCartId().getCartId() == cartId) {
-				cartDetailsModels2.add(sub);
-				
-				System.out.println(cartDetailsModels);
-			}
-
-		}
-		*/
 
 		session.flush();
 		session.close();

@@ -53,7 +53,7 @@ public class PatientModel {
     @Column(name="patient_image", nullable=false, columnDefinition="mediumblob")
     private byte[] patientImage;
 	
-    @ManyToMany(mappedBy = "patients")
+    @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER)
     private Set<DoctorModel> doctors = new HashSet<>();
 
     @OneToMany(mappedBy="patient")
