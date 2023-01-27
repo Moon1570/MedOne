@@ -14,15 +14,10 @@
 <body>
 
 
+
 <section class="vh-100" style="background-color: #fff;">
   <div class="container h-100">
-  <a class="navbar-brand row d-flex justify-content-center" href="#">
-            <img src="https://i.ibb.co/ykQgB00/medone-logo-1.png"
-                 height="200"
-                 width="350"
-                 alt="MDB Logo"
-                 loading="lazy" />
-        </a>
+  
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
         <div class="card text-black" style="border-radius: 25px;">

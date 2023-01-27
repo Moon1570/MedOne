@@ -32,7 +32,7 @@
 
 
 
-<body>
+<body class="container">
  
  <main>
 <!-- <div class="jumbotron text-center" style="margin-bottom:0">
@@ -68,3 +68,5 @@
     </ul>
   </div>  
 </nav>
+
+<br><br>
