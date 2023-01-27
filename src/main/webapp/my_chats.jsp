@@ -12,15 +12,17 @@
 
 <table>
 	<tr>
-		<th>Doctor Name</th>
+		<th>Name</th>
 		<th>Date</th>
+		<th>Action</th>
 	</tr>
 	<c:forEach items="${threads }" var="thread">
 	<tr>
 		<td>${thread.doctorModel.doctorName }</td>
 		<td>${thread.threadDate }</td>
+		<td><a href="./threads?action=openThread&threadId=${thread.id }">Open</a></td>
 	</tr>
 	</c:forEach>
-</table>
+</table>             
 </body>
 </html>

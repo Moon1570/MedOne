@@ -22,6 +22,7 @@ public class MessageModel {
 	@Column(name = "message_id")
 	private int messageId;
 	
+	@Column(name = "is_patient")
 	private boolean isPatient;
 	
 	@Column(name = "name")
