@@ -46,6 +46,7 @@ public class ThreadModel {
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<MessageModel> messageList;
 	
+
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<ReportModel> attachedReport;
 

@@ -50,11 +50,12 @@ main{
         <a class="nav-link" href="./report?action=viewAll">My Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="doctor.jsp">My Doctors</a>
+        <a class="nav-link" href="my_doctors.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">Consult Online</a>
+        <a class="nav-link" href="./threads?action=startNewChat">Message Doctor</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="relative_list.jsp">My Relatives</a>
       </li>

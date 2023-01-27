@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import model.DoctorModel;
 import model.MessageModel;
 import model.PatientModel;
-import model.ReportModel;
+
 import model.ThreadModel;
 
 import java.io.IOException;
@@ -52,6 +52,7 @@ public class ThreadServlet extends HttpServlet {
 		if (action.equals("myThreads")) {
 			
 			HttpSession session = request.getSession();
+
 			int pid = (int)session.getAttribute("pid");
 			request.setAttribute("pid", pid);
 			List<ThreadModel> threadModels = threadDao.getAllThreadByPatientId(pid);
@@ -70,6 +71,7 @@ public class ThreadServlet extends HttpServlet {
 			ThreadModel thread = threadDao.getThreadByThreadId(threadId);
 			Set<MessageModel> messages = thread.getMessageList();
 			request.setAttribute("threadId", threadId);
+
 			request.setAttribute("ddid", thread.getDoctorModel().getDoctorId());
 			request.setAttribute("pid", thread.getPatientModel().getPatientId());
 
@@ -95,6 +97,7 @@ public class ThreadServlet extends HttpServlet {
 
 		if (action.equals("addNewThread")) {
 			
+
 			int ddid = Integer.parseInt(request.getParameter("dropdownDoctor"));
 
 			System.out.println("doctor ID = "+ ddid);
@@ -108,6 +111,7 @@ public class ThreadServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				int pid = (int)session.getAttribute("pid");
 				PatientModel patientModel = patientDao.getPatientById(pid);
+
 				DoctorModel doctorModel = doctorDao.getDoctorById(ddid);
 				threadModel.setDoctorModel(doctorModel);
 				threadModel.setPatientModel(patientModel);
@@ -118,6 +122,7 @@ public class ThreadServlet extends HttpServlet {
 				//request.getRequestDispatcher("my_chats.jsp").forward(request, response);
 
 			}
+
 		} else if (action.equals("shareReport")) {
 			int threadId = Integer.parseInt(request.getParameter("threadId"));
 			

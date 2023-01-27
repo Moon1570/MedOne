@@ -2,27 +2,41 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>My Reports</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-  .fakeimg {
+<meta charset="ISO-8859-1">
+<title>MedOne Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+ .fakeimg {
     height: 200px;
     background: #aaa;
   }
   main{
-    min-height: 90vh; 
+    min-height: 80vh;
   }
-  </style>
+</style>
 </head>
+
+<%
+		session = request.getSession();
+		if (session.getAttribute("pid") == "false" || session.getAttribute("pid") == null) {
+			//	request.getRequestDispatcher("admin-login.jsp");
+			response.sendRedirect("login.jsp");
+
+		}
+%>
+
+
+
 <body>
-<main>
+ 
+ <main>
 <!-- <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>MedOne</h1>
   <p>One Stop Medical Services</p> 
@@ -41,11 +55,12 @@
         <a class="nav-link" href="./report?action=viewAll">My Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="doctor.jsp">My Doctors</a>
+        <a class="nav-link" href="my_doctors.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">Consult Online</a>
+        <a class="nav-link" href="./threads?action=startNewChat">Message Doctor</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="relative_list.jsp">My Relatives</a>
       </li>

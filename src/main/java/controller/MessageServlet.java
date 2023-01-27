@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import jakarta.servlet.http.HttpSession;
+
 import model.MessageModel;
 import model.ThreadModel;
 
@@ -64,6 +66,7 @@ public class MessageServlet extends HttpServlet {
 			messageModel.setMessages(message);
 			messageModel.setMessageDate(instant);
 
+
 			System.out.println(request.getParameter("ddid"));
 			if (request.getParameter("pid") != null && request.getParameter("ddid") != null) {
 				int pid = Integer.parseInt(request.getParameter("pid"));
@@ -76,6 +79,7 @@ public class MessageServlet extends HttpServlet {
 			
 			
 			
+
 			  messageDao.saveMessage(messageModel);
 			  System.out.println(messageModel.getMessageId()); ThreadModel threadModel =
 			  threadDao.getThreadByThreadId(threadId); Set<MessageModel> messages =

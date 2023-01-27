@@ -5,13 +5,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Thread Create</title>
-</head>
-<body>
+<jsp:include page="patient_header.jsp" />
+
 	<%
 int pid = (int) session.getAttribute("pid");
 PatientDao db = new PatientDao();
@@ -42,14 +37,26 @@ if(patientModel.getDoctors().isEmpty()){
 	<form action="./threads?action=addNewThread" method="post">
 
 	${msg }
-		<select name="dropdownDoctor" required="required">
+		
+		<select name="dropdownDoctor form-group" required="required">
+
 			<option value="0">Please select a doctor</option>
 			<c:forEach items="${doctors}" var="doctor">
 				<option value="${doctor.doctorId}">${doctor.doctorName }</option>
 			</c:forEach>
 		</select> 
-		<input type="hidden" value="${pid }" name="pid">
 		<button type="submit">Start a new conversation</button>
 	</form>
+	<button type="button" class="btn btn-link"><a href="./threads?action=myThreads" class="nav-link">My messages</a></button>
+</main>
+
+<footer class="text-center text-lg-start bg-light text-muted">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright:
+    <p class="text-reset fw-bold">Holy Bugs</p>
+  </div>
+</footer>
+
+
 </body>
 </html>

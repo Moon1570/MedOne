@@ -20,7 +20,9 @@
 	<tr>
 		<td>${thread.doctorModel.doctorName }</td>
 		<td>${thread.threadDate }</td>
+
 		<td><a href="./threads?action=openThread&threadId=${thread.id }&ddid=${ddid}&pid=${pid}">Open</a></td>
+
 	</tr>
 	</c:forEach>
 </table>             

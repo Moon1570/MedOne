@@ -21,7 +21,7 @@ public class MessageModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "message_id")
 	private int messageId;
-	
+
 	@Column(name = "sender")
 	private String sender;
 	
@@ -54,6 +54,7 @@ public class MessageModel {
 
 
 
+
 	public Date getMessageDate() {
 		return messageDate;
 	}
@@ -61,6 +62,7 @@ public class MessageModel {
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
 	}
+
 
 	public String getSender() {
 		return sender;

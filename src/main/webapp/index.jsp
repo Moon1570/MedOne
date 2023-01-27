@@ -59,8 +59,9 @@
         <a class="nav-link" href="my_doctors.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">Consult Online</a>
+        <a class="nav-link" href="./threads?action=startNewChat">Message Doctor</a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="relative_list.jsp">My Relatives</a>
       </li>
@@ -83,6 +84,13 @@
       <form class="" action="./patients?action=addRelativesByPhone" method="post">
  			<input type="text" name="relativePhoneNumber" placeholder="enter relative's phone number"> <br>
 			<button type="submit" class="btn btn-primary btn-md">Add relatives</button>
+							
+		</form>
+		<br><br><br>
+		<h3>Add Doctor:</h3>
+      <form class="" action="./patients?action=addDoctorsByPhone" method="post">
+ 			<input type="text" name="doctorPhoneNumber" placeholder="enter doctor's phone number"> <br>
+			<button type="submit" class="btn btn-primary btn-md">Add Doctor</button>
 							
 		</form>
       <!-- <h3>Some Links</h3>
@@ -141,8 +149,10 @@
           <a href="#" class="btn btn-primary">See Profile</a>
         </div>
       </div>
+
       <a href="./threads?action=startNewChat">Start chat with your doctor</a><br>
       <a href="./threads?action=myThreads">My Threads</a>
+
       <!-- <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> -->
     </div>
