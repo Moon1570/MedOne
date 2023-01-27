@@ -14,6 +14,7 @@ import model.ReportModel;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,7 +52,6 @@ public class DoctorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");		
@@ -78,6 +78,17 @@ public class DoctorServlet extends HttpServlet {
 			request.setAttribute("patients", doctorModel.getPatients());
 			System.out.println(doctorModel.getPatients().toString());
 			request.getRequestDispatcher("/patient_list.jsp").forward(request, response);
+		} else if(action.equals("getImage")) {
+			int did = Integer.parseInt(request.getParameter("did"));
+			DoctorModel doctorModel = db.getDoctorById(did);
+			
+			byte[] image = doctorModel.getDoctorImage();
+			System.out.println(doctorModel);
+
+			OutputStream os = response.getOutputStream();
+			os.write(image);
+			os.flush();
+			os.close();
 		}
 		
 	}
@@ -165,7 +176,7 @@ public class DoctorServlet extends HttpServlet {
 			request.getRequestDispatcher("/doctor_dashboard.jsp").forward(request, response);
 		}
 		
-else if (action.equals("login")) {
+		else if (action.equals("login")) {
 			
 			DoctorModel doctorModel = new DoctorModel();
 			

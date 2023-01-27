@@ -23,6 +23,8 @@
 		<property name="show_sql">true</property>
 
 		<property name="hibernate.connection.release_mode">after_statement</property>
+		
+		
 
 		<!-- start c3p0 connection properties -->
 		<property name="c3p0.min_size">10</property>
@@ -42,7 +44,8 @@
 		<mapping class="model.DoctorModel" />
 		<mapping class="model.ReportModel" />
 		<mapping class="model.DrugModel" />
-		
+		<mapping class="model.ThreadModel" />
+		<mapping class="model.MessageModel" />
 		
 		
 		

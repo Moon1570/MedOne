@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +42,9 @@ public class PatientModel {
 	@Column(name = "patient_phone")
 	private String patientPhone;
 	
+	@Column(name = "blood_group")
+	private String bloodGroup;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "patient_dob")
 	private Date patientDOB;
@@ -52,7 +56,7 @@ public class PatientModel {
     @Column(name="patient_image", nullable=false, columnDefinition="mediumblob")
     private byte[] patientImage;
 	
-    @ManyToMany(mappedBy = "patients")
+    @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER,  cascade = { CascadeType.ALL })
     private Set<DoctorModel> doctors = new HashSet<>();
 
     @OneToMany(mappedBy="patient")
@@ -143,7 +147,23 @@ public class PatientModel {
 		this.relatives = relatives;
 	}
 
-	
+	public void addDoctor(DoctorModel doctorModel) {
+        this.doctors.add(doctorModel);
+        doctorModel.getPatients().add(this);
+    }
+  
+    public void removeDoctor(DoctorModel doctorModel) {
+        this.doctors.remove(doctorModel);
+        doctorModel.getPatients().remove(this);
+    }
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
 	
 	
 	

@@ -151,6 +151,15 @@ public class DoctorModel {
 	}
 
 
+	public void addPatient(PatientModel patientModel) {
+        this.patients.add(patientModel);
+        patientModel.getDoctors().add(this);
+    }
+  
+    public void removePatient(PatientModel patientModel) {
+        this.patients.remove(patientModel);
+        patientModel.getDoctors().remove(this);
+    }
 	
 	
 }

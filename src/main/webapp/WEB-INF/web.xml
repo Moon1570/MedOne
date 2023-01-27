@@ -47,4 +47,26 @@
     <servlet-name>DrugServlet</servlet-name>
     <url-pattern>/DrugServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>ThreadServlet</display-name>
+    <servlet-name>ThreadServlet</servlet-name>
+    <servlet-class>controller.ThreadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThreadServlet</servlet-name>
+    <url-pattern>/threads</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageServlet</display-name>
+    <servlet-name>MessageServlet</servlet-name>
+    <servlet-class>controller.MessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageServlet</servlet-name>
+    <url-pattern>/messages</url-pattern>
+  </servlet-mapping>
+
 </web-app>

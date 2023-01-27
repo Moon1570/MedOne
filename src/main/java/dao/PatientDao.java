@@ -147,8 +147,7 @@ public class PatientDao {
 
 	public PatientModel getPatientByphone(String phone) {
 		// TODO Auto-generated method stub
-		String query = "from PatientModel patient where patient.patientPhone=" + phone;
-		Connection con = new Connection();
+		String query = "from PatientModel patient where patient.patientPhone='"+phone+"'";		Connection con = new Connection();
 		Session session = con.getSessionFactory().openSession();
 		
 		Query queryExecuteable = session.createQuery(query);
