@@ -9,30 +9,45 @@
 <title>View Relative</title>
 </head>
 <body>
-${relStatus }
-	<c:if test="${relStatus =='0' }">                            
-		<td>No member found with this phone</td>
-	</c:if>
-	<c:if test="${relStatus =='3' }">                            
-		<td>Already added as a relative</td>
-	</c:if>
 	
-	<c:if test="${relStatus =='2' }">                            
-		<td>You can't add yourself as relative</td>
-	</c:if>
-	<c:if test="${relStatus =='1' }">                            
-		<td>Found</td>
-	
-	
-	Is it the right person?<br>
-	Name = ${relative.patientName}<br>
-	<img src="./patients?action=getImage&pid=${relative.patientId}">
-	
-	<form action="./patients?action=addRelationship" method="post" >
+<jsp:include page="patient_header.jsp" />
+
+	<section class="vh-90" style="background-color: #eee;">
+  <div >
+    <div class="row d-flex justify-content-center align-items-center h-90">
+      <div class="col-md-8 col-xl-4">
+      <h2 class="h2"> Relative Profile</h2><br>
+      <p>Is this the person you are looking for?</p>
+	<form action="./patients?action=addRelationship	" method="post" >
 		<input type="hidden" value="${relative.patientId }" name="rid">
-		<input type="text" placeholder="Relation" name="relationName">
-		<button type="submit">Submit</button>
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body text-center">
+            <div class="">
+              <img src="./patients?action=getImage&pid=${relative.patientId}"
+                class="rounded-circle img-fluid" style="width: 200px;" />
+            </div>
+            <h4 class="mb-2">${relative.patientName }</h4>
+            <p class="text-muted mb-4">${relative.patientAddress } </p>
+            <div class="mb-4 pb-2">
+    		<a href="tel:${relative.patientPhone}">${relative.patientPhone }</a>
+            </div>
+            		<input type="text" placeholder="Relation" name="relationName">
+            <br><br>
+            <button type="submit" class="btn btn-primary btn-rounded btn-lg">
+              Add Relative
+            </button>
+           
+            </div>
+          </div>
+        </div>
+
 	</form>
-</c:if>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>

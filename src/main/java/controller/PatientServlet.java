@@ -50,13 +50,14 @@ public class PatientServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 
-
+		//getting all the patient list
 		if (action.equals("view")) {
 			List<PatientModel> customerModels = db.getAllPatients();
 			request.setAttribute("customers", customerModels);
 			request.setAttribute("page", request.getParameter("page"));
 			request.getRequestDispatcher("/Customers.jsp").forward(request, response);
 		}
+		//handling register get req
 		else if (action.equals("reg")) {
 			PatientModel customerModel = new PatientModel();
 
@@ -65,6 +66,8 @@ public class PatientServlet extends HttpServlet {
 
 			request.getRequestDispatcher("/registration.jsp").forward(request, response);
 		}
+		//handling login get req
+
 		else if (action.equals("login")) {
 
 			PatientModel customerModel = new PatientModel();
@@ -74,6 +77,8 @@ public class PatientServlet extends HttpServlet {
 
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+		//handling log out get req
+
 		else if (action.equals("logout")) {
 
 
@@ -84,6 +89,8 @@ public class PatientServlet extends HttpServlet {
 			request.setAttribute("action", "login");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} 
+		//handling image get req
+
 		else if (action.equals("getImage")) {
 
 			int pid = Integer.parseInt(request.getParameter("pid"));
@@ -96,6 +103,7 @@ public class PatientServlet extends HttpServlet {
 			os.flush();
 			os.close();
 		} 
+		//handling doctor list get req
 		else if(action.equalsIgnoreCase("getMyDoctors")) {
 
 
@@ -103,6 +111,7 @@ public class PatientServlet extends HttpServlet {
 			request.getRequestDispatcher("my_doctors.jsp").forward(request, response);
 
 		}
+		//deleting doctor patient relationship
 		else if(action.equals("deleteDoctorFromPatientList")){
 			int pid = (int) session.getAttribute("pid");
 			PatientModel patientModel = db.getPatientById(pid);
@@ -128,6 +137,8 @@ public class PatientServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		
+		//handling registration post form and setting cookies
 		if (action.equals("reg")) {
 			PatientModel patientModel = new PatientModel();
 
@@ -197,6 +208,8 @@ public class PatientServlet extends HttpServlet {
 
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
+		
+		//handling login post form and setting cookies
 		else if (action.equals("login")) {
 
 			PatientModel patientModel = new PatientModel();

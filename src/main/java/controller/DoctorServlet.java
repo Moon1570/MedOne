@@ -61,24 +61,29 @@ public class DoctorServlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 
-		
+		//Registration Request forwarding
 		if (action.equals("reg")) {
 			
 			
 			request.getRequestDispatcher("/doctor_registration.jsp").forward(request, response);
 		} 
+		//Login Request forwarding
 		else if (action.equals("login")) {
 			
 			
 			request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 		}
+		
+		//Getting all members/patients listed to a doctor
 		else if (action.equals("getAllPatients")) {
 			int did = (int) session.getAttribute("did");
 			DoctorModel doctorModel = db.getDoctorById(did);
 			request.setAttribute("patients", doctorModel.getPatients());
 			System.out.println(doctorModel.getPatients().toString());
 			request.getRequestDispatcher("/patient_list.jsp").forward(request, response);
-		} else if(action.equals("getImage")) {
+		} 
+		//Send image file of Doctors 
+		else if(action.equals("getImage")) {
 			int did = Integer.parseInt(request.getParameter("did"));
 			DoctorModel doctorModel = db.getDoctorById(did);
 			
@@ -103,6 +108,8 @@ public class DoctorServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		
+		//Handling the registration
 		if (action.equals("reg")) {
 			DoctorModel doctorModel = new DoctorModel();
 			
@@ -176,6 +183,7 @@ public class DoctorServlet extends HttpServlet {
 			request.getRequestDispatcher("/doctor_dashboard.jsp").forward(request, response);
 		}
 		
+		//Handling the login
 		else if (action.equals("login")) {
 			
 			DoctorModel doctorModel = new DoctorModel();
@@ -185,13 +193,14 @@ public class DoctorServlet extends HttpServlet {
 			
 			doctorModel =db.getDoctorPasswordByPhone(doctorPhone);
 			
-			
+			//if no one is found with the given phone
 			if(doctorModel==null)
 			{
 				request.setAttribute("message", "Account id Invalid...");
 				request.setAttribute("action", "login");
 				request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 			}
+			//matching given and stored password
 			else if (doctorPhone.equals(doctorModel.getDoctorPhone()) && doctorPassword.equals(doctorModel.getDoctorPassword())) {
 				int did = doctorModel.getDoctorId();
 				
@@ -204,14 +213,14 @@ public class DoctorServlet extends HttpServlet {
 
 			
 			}
-			
+			// password is not matched
 			else {
 				request.setAttribute("message", "Wrong Account id or  password...");
 				request.setAttribute("action", "login");
 				request.getRequestDispatcher("/doctor_login.jsp").forward(request, response);
 			}
 		} 
-		
+		//getting the reports of a patient (if you have permission)
 		else if (action.equals("getPatientReport")) {
 			
 			String phone = request.getParameter("patientInfo");
@@ -222,6 +231,7 @@ public class DoctorServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/view_reports.jsp").forward(request, response);
 		}
+		//Adding patients to list
 		else if (action.equals("addPatient")) {
 			
 			String phone = request.getParameter("patientInfo");

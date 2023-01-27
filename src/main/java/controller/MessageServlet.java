@@ -56,7 +56,7 @@ public class MessageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String action = request.getParameter("action");
-		
+		//sending message and updating the page
 		if(action.equals("sendMessage")) {
 			String message = request.getParameter("myMessage");
 			int threadId = Integer.parseInt(request.getParameter("threadId"));

@@ -28,7 +28,8 @@ public class AdminServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String action = request.getParameter("action");
-				
+		
+		//Controls the get request of admin
 		if (action.equals("login")) {
 
 			AdminModel adminModel = new AdminModel();
@@ -37,6 +38,7 @@ public class AdminServlet extends HttpServlet {
 
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+		//Log admin out
 		else if (action.equals("logout")) {
 
 
