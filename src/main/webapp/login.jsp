@@ -7,15 +7,22 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <meta charset="ISO-8859-1">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <title>Login</title>
 </head>
 <body>
 
 
-<section class="vh-100" style="background-color: #eee;">
+<section class="vh-100" style="background-color: #fff;">
   <div class="container h-100">
+  <a class="navbar-brand row d-flex justify-content-center" href="#">
+            <img src="https://i.ibb.co/ykQgB00/medone-logo-1.png"
+                 height="200"
+                 width="350"
+                 alt="MDB Logo"
+                 loading="lazy" />
+        </a>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
         <div class="card text-black" style="border-radius: 25px;">
@@ -63,18 +70,21 @@
                     </label>
                   </div>
  -->
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <div class="d-flex justify-content-left mx-4 mb-3 mb-lg-4">
                     <button type="submit" class="btn btn-primary btn-lg">Login</button>
                   </div>
 
                 </form>
+                
+                <div class="text-center">
+    				<p class="text-danger">Are you a Doctor?   <a href="./doctors?action=login">Doctor's Login</a></p>
+  				</div>
+                <div class="text-center">
+    				<p class="text-danger">Not Registered?   <a href="./patients?action=reg">Register</a></p>
+  				</div>
 
               </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
-                <a href="doctor_login.jsp">login as doctor</a>
-
-              </div>
+             
             </div>
           </div>
         </div>

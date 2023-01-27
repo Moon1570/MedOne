@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Doctor Dashboard</title>
+
+
+<title>Relative name</title>
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -14,27 +18,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
+ .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
   main{
     min-height: 80vh;
   }
 </style>
 </head>
-<body>
 
 <%
-		response.setHeader("Cache-Control","no-cache");
-		response.setHeader("Cache-Control","no-store");
-		response.setHeader("Pragma","no-cache");
-		response.setDateHeader ("Expires", 0);
 		session = request.getSession();
-		if (session.getAttribute("did") == "false" || session.getAttribute("did") == null) {
+		if (session.getAttribute("pid") == "false" || session.getAttribute("pid") == null) {
 			//	request.getRequestDispatcher("admin-login.jsp");
-			response.sendRedirect("doctor_login.jsp");
+			response.sendRedirect("login.jsp");
 
 		}
 %>
 
-<main>
+
+
+<body>
+ 
+ <main>
+<!-- <div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>MedOne</h1>
+  <p>One Stop Medical Services</p> 
+</div> -->
 
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
   <a class="navbar-brand" href="index.jsp">
@@ -49,43 +60,37 @@
         <a class="nav-link" href="./report?action=viewAll">My Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./doctors?action=getAllPatients">My Patients</a>
+        <a class="nav-link" href="doctor.jsp">My Doctors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Consult Online</a>
+        <a class="nav-link" href="chat.jsp">Consult Online</a>
       </li>
-      <!-- 
       <li class="nav-item">
         <a class="nav-link" href="relative_list.jsp">My Relatives</a>
       </li>
-       -->
       <li class="nav-item">
-        <a class="nav-link" href="./doctors?action=logout">Logout</a>
+        <a class="nav-link" href="./patients?action=logout">Logout</a>
       </li>    
     </ul>
   </div>  
 </nav>
 
-<br>
-
-
-
-
-
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-3">
-      <h4>Welcome,</h4>
-      <h3>Doctor, ${name}</h3>
+      <h2>About Relative:</h2>
+      <h5>${name}</h5>
       <img src="https://www.dlf.pt/dfpng/middlepng/569-5693658_dummy-user-image-png-transparent-png.png" alt="DP" class="img-thumbnail">
       <p>Blood Group: <b>A+</b></p>
+      <p>Relationship: Brother</p>
       <br><br>
-      <h3>Add Patient:</h3>
-      <form class="" action="./doctors?action=addPatient" method="post">
- 			<input type="text" name="patientInfo" placeholder="enter patient's phone number"> <br>
-			<button type="submit" class="btn btn-primary btn-md">Add Patients</button>
+      <!-- 
+      <h3>Add Relative:</h3>
+      <form class="" action="./patients?action=addRelativesByPhone" method="post">
+ 			<input type="text" name="relativePhoneNumber" placeholder="enter relative's phone number"> <br>
+			<button type="submit" class="btn btn-primary btn-md">Add relatives</button>
 							
-		</form>
+		</form> -->
       <!-- <h3>Some Links</h3>
       <p>Lorem ipsum dolor sit ame.</p>
       <ul class="nav nav-pills flex-column">
@@ -105,52 +110,14 @@
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <h2>Last Referred Report</h2>
-      <h5>Uploaded on 23 Jan, 2022</h5>
-      
-      <!-- <iframe id="inlineFrameExample"
-		    title="Inline Frame Example"
-		    width="500"
-		    height="200"
-		    src=" ./report?action=viewReport&rid=${singleReport.reportId}">
-		</iframe> -->
-		<iframe></iframe>
-      
-      <!--  
-      <div class="fakeimg">Not Available</div>
-      -->
-      
-      <p>Referred by: Dr. Cena</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      <br><br>
-      <h2>Search patients's report</h2>
-      <form class="mt-2" action="./doctors?action=getPatientReport" method="post" enctype="multipart/form-data">
- 
- 						<input type="text" name="patientInfo" placeholder="enter report name" class="form-control">
-						<button type="submit" class="btn btn-primary btn-md">upload</button>
-							
-	  </form>
-      
-      
-      <!-- 
-      <br><br><br>
-      <h2>Latest Advices from Doctors</h2>
-      <h5>Last Updated, Sep 2, 2017</h5>
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Dr. John</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <a href="#" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
+    	
+    	 
+    </div>
       <!-- <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> -->
-    <!-- </div>
+    </div>
   </div>
 </div>
-
-<a href="./doctors?action=getAllPatients">View all patients</a> -->
-
 </main>
 
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -159,7 +126,40 @@
     <p class="text-reset fw-bold">Holy Bugs</p>
   </div>
 </footer>
-
-
+ 
+ <script>
+        function fileValidation() {
+            var fileInput =
+                document.getElementById('file');
+             
+            var filePath = fileInput.value;
+         
+            // Allowing file type
+            var allowedExtensions =
+                    /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+             
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                return false;
+            }
+            else
+            {
+             
+                // Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById(
+                            'imagePreview').innerHTML =
+                            '<img src="' + e.target.result
+                            + '"/>';
+                    };
+                     
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
