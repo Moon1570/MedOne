@@ -10,6 +10,7 @@
 <div class="row">
   <div class="col-8">
 
+<h1 class="h1">My messages</h1>
 <c:if test="${flag ==0 }">
 		No message history. Why don't you try sending one?
 		<form action="./messages?action=sendMessage&threadId=${threadId }"
@@ -22,25 +23,7 @@
 
 		</form>
 	</c:if>
-	
-		
-		<%
-				int pid = (int)session.getAttribute("pid");
-				ReportDao reportDao = new ReportDao();
-				List<ReportModel> reportModels = reportDao.getAllReportByPatientId(pid);
-				if(!reportModels.isEmpty()){
-					request.setAttribute("reports", reportModels);
-					request.setAttribute("flag_rep", "1");
-				} else {
-					request.setAttribute("flag_rep", "0");
-				}
-			%>
 			
-		
-		
-		
-		
-		
 	<c:if test="${flag ==1 }">
 		<table class="table table-stripe">
 			<tr>
@@ -58,11 +41,9 @@
 					<td>${message.messageDate }</td>
 				</tr>
 			</c:forEach>
-			<form action="./messages?action=sendMessage&threadId=${threadId }"
-				method="post">
+			<form action="./messages?action=sendMessage&threadId=${threadId }" method="post">
 				<textarea name="myMessage"></textarea>
-				<input type="hidden" value="${pid }" name="pid"> <input
-					type="hidden" value="${ddid }" name="ddid"> <br>
+				<br>
 				<button type="submit">Send Message</button>
 
 			</form>
@@ -76,6 +57,17 @@
   
   
   </div>
+  <%
+				int pid = (int)session.getAttribute("pid");
+				ReportDao reportDao = new ReportDao();
+				List<ReportModel> reportModels = reportDao.getAllReportByPatientId(pid);
+				if(!reportModels.isEmpty()){
+					request.setAttribute("reports", reportModels);
+					request.setAttribute("flag_rep", "1");
+				} else {
+					request.setAttribute("flag_rep", "0");
+				}
+			%>
   <div class="col-4">
 	<c:if test="${flag_rep == 0 }">
 		No reports to share. Want to add some?
@@ -92,6 +84,26 @@
 		<button type="button">Share</button>
 		</form>
 		</c:if>
+		<hr/>
+		
+		<h2 class="h2">Shared reports</h2>
+		<hr/>
+		
+		<table class="table stripe">
+			<tr>
+				<td>Name</td>
+				<td>Shared Date</td>
+				<td>Preview</td>
+			</tr>
+			<c:forEach items="${sharedReport }" var="item">
+			<tr>
+				<td>${item.reportName }</td>
+				<td>${item.reportCreateDate }</td>
+				<td><a href="./report?action=viewReportFullScreen&rid=${item.reportId}">link</a></td>
+			</tr>
+			</c:forEach>
+		</table>
+		
 		
 		
 		

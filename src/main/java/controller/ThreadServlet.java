@@ -82,6 +82,15 @@ public class ThreadServlet extends HttpServlet {
 			ThreadModel thread = threadDao.getThreadByThreadId(threadId);
 			Set<MessageModel> messages = thread.getMessageList();
 			request.setAttribute("threadId", threadId);
+			
+			Set<ReportModel> reportModels = thread.getAttachedReport();
+			
+			if (!reportModels.isEmpty()) {
+				request.setAttribute("sharedReport", reportModels);
+			}
+			
+			request.setAttribute("threadId", threadId);
+
 
 			request.setAttribute("sender", thread.getPatientModel().getPatientName());
 			request.setAttribute("receiver", thread.getDoctorModel().getDoctorName());
