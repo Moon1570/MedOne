@@ -118,7 +118,6 @@
       -->
       
       <p>Referred by: Dr. Cena</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
       <br><br>
       <h2>Search patients's report</h2>
       <form class="mt-2" action="./doctors?action=getPatientReport" method="post" enctype="multipart/form-data">

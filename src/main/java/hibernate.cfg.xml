@@ -5,9 +5,14 @@
 <hibernate-configuration>
 	<session-factory>
       <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://103.28.121.29:3306/medone?useSSL=false</property>
+	<!-- 	<property name="hibernate.connection.url">jdbc:mysql://103.28.121.29:3306/medone?useSSL=false</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
+		 -->
+		 
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medone?useSSL=false</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 
